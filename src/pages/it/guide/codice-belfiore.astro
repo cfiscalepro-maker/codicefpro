@@ -1,0 +1,61 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Il codice Belfiore è lo stesso del codice catastale?', a: 'Nel linguaggio comune sì: il codice Belfiore è il codice catastale del comune. Attenzione però agli elenchi, perché alcuni file riportano più colonne di codici. In quello dell’Agenzia delle Entrate che usiamo, il codice giusto è nella colonna “Codice Nazionale”.' },
+  { q: 'Il codice Belfiore indica il luogo di residenza?', a: 'No. Nel codice fiscale il codice Belfiore indica il comune o lo Stato di nascita, mai la residenza.' },
+  { q: 'Cosa succede se il mio comune di nascita non esiste più?', a: 'Si usa il codice che il comune aveva alla nascita. Il nostro elenco contiene solo comuni e Stati attuali, quindi in questi casi conviene controllare con il servizio dell’Agenzia delle Entrate.' },
+  { q: 'Perché alcuni comuni hanno lo stesso nome ma codici diversi?', a: 'Perché sono comuni distinti in province diverse. Castro, per esempio, esiste in provincia di Bergamo con codice C337 e in provincia di Lecce con codice M261. Va scelto quello giusto.' },
+];
+---
+<Guide
+  title="Codice Belfiore: cos’è e come trovarlo | Codice Fiscale Pro"
+  h1="Codice Belfiore: cos’è e come trovarlo"
+  description="Il codice Belfiore indica il comune o lo Stato di nascita nel codice fiscale: formato, esempi reali, comuni omonimi e come cercarlo nell’elenco."
+  path="/it/guide/codice-belfiore/"
+  summary="Il codice Belfiore è il codice di quattro caratteri (una lettera e tre cifre) che nel codice fiscale indica il comune italiano o lo Stato estero di nascita, nelle posizioni 12-15. Roma è H501, Milano F205; gli Stati esteri iniziano con Z, per esempio Z404 per gli Stati Uniti d’America. Si cerca nell’elenco dei comuni e degli Stati dell’Agenzia delle Entrate."
+  audience="chi deve completare un calcolo a mano, chi sviluppa strumenti che validano codici fiscali e chi non sa quale codice usare per un comune con nome ripetuto o per uno Stato estero."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['come-si-calcola-il-codice-fiscale', 'codice-fiscale-per-cittadini-stranieri', 'errori-comuni-nel-codice-fiscale', 'come-leggere-e-decodificare-un-codice-fiscale']}
+>
+  <h2>Cos’è il codice Belfiore?</h2>
+  <p>È il codice che identifica un comune italiano o uno Stato estero nelle posizioni da 12 a 15 del codice fiscale. È formato da una lettera e tre cifre. Per i comuni la codifica è quella dell’Agenzia del Territorio, mentre per gli Stati esteri si usa una Z seguita da tre cifre, come spiega <a href="https://www.money.it/codice-fiscale-a-cosa-serve-come-ottenere" rel="noopener noreferrer">Money.it</a>.</p>
+
+  <h2>Quali sono alcuni esempi di codice Belfiore?</h2>
+  <p>Ecco alcuni codici dall’elenco dell’Agenzia delle Entrate incluso nel nostro sito.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Luogo</th><th>Codice</th><th>Luogo</th><th>Codice</th></tr></thead>
+    <tbody>
+      <tr><td>Roma</td><td><code>H501</code></td><td>Francia</td><td><code>Z110</code></td></tr>
+      <tr><td>Milano</td><td><code>F205</code></td><td>Germania</td><td><code>Z112</code></td></tr>
+      <tr><td>Napoli</td><td><code>F839</code></td><td>Romania</td><td><code>Z129</code></td></tr>
+      <tr><td>Torino</td><td><code>L219</code></td><td>Albania</td><td><code>Z100</code></td></tr>
+      <tr><td>Firenze</td><td><code>D612</code></td><td>Stati Uniti d’America</td><td><code>Z404</code></td></tr>
+    </tbody></table></div>
+
+  <h2>Come si trova il codice Belfiore di un comune o di uno Stato?</h2>
+  <p>Il modo più rapido è usare il campo di ricerca del <a href="/it/">calcolo del codice fiscale</a>: scrivi il nome e scegli il luogo, e il codice viene inserito per te. L’elenco completo è nell’<a href="https://arcom.agenziaentrate.gov.it/CitizenArCom/" rel="noopener noreferrer">archivio comuni e Stati esteri dell’Agenzia delle Entrate</a>. Il nostro elenco contiene 7.894 comuni e 249 Stati esteri attuali, aggiornati al 21 febbraio 2026.</p>
+
+  <h2>Cosa fare con i comuni che hanno lo stesso nome?</h2>
+  <p>Vanno distinti dalla provincia, perché sono comuni diversi con codici diversi. Nel nostro elenco ci sono cinque nomi in questa situazione.</p>
+  <ul>
+    <li>Castro: Bergamo <code>C337</code>, Lecce <code>M261</code>.</li>
+    <li>Livo: Como <code>E623</code>, Trento <code>E624</code>.</li>
+    <li>Peglio: Como <code>G415</code>, Pesaro e Urbino <code>G416</code>.</li>
+    <li>Samone: Torino <code>H753</code>, Trento <code>H754</code>.</li>
+    <li>San Teodoro: Messina <code>I328</code>, Sassari <code>I329</code>.</li>
+  </ul>
+
+  <h2>Quale colonna usare negli elenchi con più codici?</h2>
+  <p>Un dettaglio che abbiamo verificato sull’esportazione dell’Agenzia delle Entrate: la colonna “Codice Nazionale” contiene il codice Belfiore (per Roma <code>H501</code>), mentre la colonna “Codice Catastale” riporta un altro codice (per Roma <code>M1AA</code>). Usare la seconda dà codici fiscali sbagliati.</p>
+
+  <h2>Cosa succede se il comune è stato soppresso o è cambiato?</h2>
+  <p>Nel codice fiscale resta il codice del comune com’era alla nascita. Il nostro elenco ha solo comuni e Stati attuali. Chi è nato in un comune soppresso, accorpato o ceduto ad altri Stati dopo il trattato di pace può avere un codice che il calcolo non conosce: in questi casi il <a href="https://www.01net.it/il-codice-fiscale-e-corretto-verificalo-sul-sito-delle-entrate/" rel="noopener noreferrer">servizio di verifica dell’Agenzia</a> è lo strumento giusto. Vedi anche la guida su <a href="/it/guide/verifica-formale-e-verifica-ufficiale/">verifica formale e ufficiale</a>.</p>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://arcom.agenziaentrate.gov.it/CitizenArCom/" rel="noopener noreferrer">Agenzia delle Entrate</a>: archivio dei comuni e degli Stati esteri.</li>
+    <li><a href="https://www.money.it/codice-fiscale-a-cosa-serve-come-ottenere" rel="noopener noreferrer">Money.it</a>: struttura del codice del luogo.</li>
+    <li><a href="https://www.01net.it/il-codice-fiscale-e-corretto-verificalo-sul-sito-delle-entrate/" rel="noopener noreferrer">01net.it</a> (2014): verifica per i nati in comuni ceduti.</li>
+  </ul>
+</Guide>

@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tokens from DESIGN.md. Dark values are not in DESIGN.md and are derived: same ink/grey ladder, inverted. */
+:root {
+  --cf-ink: #171717; --cf-body: #4d4d4d; --cf-hairline: #ebebeb;
+  --cf-canvas: #fafafa; --cf-elevated: #ffffff; --cf-link: #0761d1; --cf-error: #c50000;
+  --cf-on-primary: #ffffff;
+}
+.dark {
+  --cf-ink: #ededed; --cf-body: #a1a1a1; --cf-hairline: #2e2e2e;
+  --cf-canvas: #0a0a0a; --cf-elevated: #111111; --cf-link: #52a8ff; --cf-error: #ff6166;
+  --cf-on-primary: #0a0a0a;
+}
+@theme {
+  --font-sans: "Geist Variable", Arial, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-ink: var(--cf-ink); --color-body: var(--cf-body); --color-hairline: var(--cf-hairline);
+  --color-canvas: var(--cf-canvas); --color-elevated: var(--cf-elevated);
+  --color-link: var(--cf-link); --color-error: var(--cf-error); --color-on-primary: var(--cf-on-primary);
+  --radius-sm: 6px; --radius-md: 12px; --radius-lg: 16px;
+  --container-page: 1200px;
+}
+html { background: var(--cf-canvas); color: var(--cf-body); font-family: var(--font-sans); }
+:focus-visible { outline: 2px solid var(--cf-link); outline-offset: 2px; }
+.display { font-weight: 600; letter-spacing: -0.05em; line-height: 1; }
+.h-lg { font-weight: 600; letter-spacing: -0.04em; line-height: 1.25; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; color: var(--cf-body); }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+.legal h2 { margin-top: 2rem; font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); }
+.legal p, .legal ul { margin-top: 0.75rem; }
+.legal ul { list-style: disc; padding-left: 1.25rem; }
+.legal li { margin-top: 0.25rem; }
+.legal a { color: var(--cf-link); text-decoration: underline; }
+
+.legal h3 { margin-top: 1.25rem; font-weight: 600; color: var(--cf-ink); }
+.legal ol { list-style: decimal; padding-left: 1.25rem; margin-top: 0.75rem; }
+.legal table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.legal th, .legal td { border: 1px solid var(--cf-hairline); padding: 0.5rem 0.75rem; text-align: left; vertical-align: top; }
+.legal th { color: var(--cf-ink); font-weight: 600; background: var(--cf-elevated); }
+.legal code { font-family: var(--font-mono); color: var(--cf-ink); }
+.legal .table-wrap { margin-top: 0.75rem; overflow-x: auto; }

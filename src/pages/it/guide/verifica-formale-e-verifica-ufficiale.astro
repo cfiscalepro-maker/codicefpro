@@ -1,0 +1,67 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Un codice fiscale formalmente corretto è per forza valido?', a: 'No. Può avere una struttura corretta e una lettera di controllo giusta senza essere mai stato assegnato a nessuno. Solo l’anagrafe tributaria può dire se esiste.' },
+  { q: 'La verifica di questo sito è ufficiale?', a: 'No. Codice Fiscale Pro è un sito indipendente, non affiliato all’Agenzia delle Entrate. Il nostro controllo è formale e lo dichiariamo in ogni risultato.' },
+  { q: 'Dove si fa la verifica ufficiale?', a: 'Sul servizio di verifica del codice fiscale dell’Agenzia delle Entrate, che confronta il codice con l’anagrafe tributaria. Il link è in questa pagina.' },
+  { q: 'Quando basta la verifica formale?', a: 'Quando vuoi individuare un errore di battitura o di calcolo prima di inviare un modulo. Quando il codice ha effetti legali o fiscali, usa anche la verifica ufficiale.' },
+];
+---
+<Guide
+  title="Verifica formale e ufficiale del codice fiscale | Codice Fiscale Pro"
+  h1="Verifica formale e verifica ufficiale del codice fiscale"
+  description="Differenza tra verifica formale (struttura e lettera di controllo) e verifica ufficiale dell’Agenzia delle Entrate, con cosa controlla ciascuna e quando usarle."
+  path="/it/guide/verifica-formale-e-verifica-ufficiale/"
+  summary="Una verifica formale controlla che il codice fiscale sia costruito correttamente: lunghezza, caratteri, data, sesso, formato del luogo e lettera di controllo. La verifica ufficiale dell’Agenzia delle Entrate confronta il codice con l’anagrafe tributaria. Una verifica formale del codice fiscale non equivale alla verifica ufficiale dell’Agenzia delle Entrate."
+  audience="chi deve controllare un codice prima di usarlo in un modulo, un contratto o un archivio, e chi si chiede perché un controllo online positivo non basta. Utile anche a chi sviluppa software di validazione."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['cos-e-il-codice-fiscale-inverso', 'cos-e-l-omocodia', 'errori-comuni-nel-codice-fiscale', 'come-trovare-il-proprio-codice-fiscale']}
+>
+  <h2>Cosa controlla una verifica formale del codice fiscale?</h2>
+  <p>Controlla la coerenza interna del codice, senza consultare banche dati. Il nostro strumento di <a href="/it/verifica-codice-fiscale/">verifica codice fiscale</a> esamina questi punti:</p>
+  <ul>
+    <li>16 caratteri, con lettere e cifre nelle posizioni previste;</li>
+    <li>lettera del mese valida (A, B, C, D, E, H, L, M, P, R, S, T);</li>
+    <li>giorno e sesso compatibili con il mese;</li>
+    <li>formato del codice del luogo, una lettera e tre cifre;</li>
+    <li>lettera di controllo corretta, ricalcolata dai primi 15 caratteri;</li>
+    <li>omocodia: lettere L, M, N, P, Q, R, S, T, U, V al posto di cifre sono accettate.</li>
+  </ul>
+
+  <h2>Cosa controlla la verifica ufficiale dell’Agenzia delle Entrate?</h2>
+  <p>Il <a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">servizio dell’Agenzia delle Entrate</a> confronta il codice con i dati registrati nell’anagrafe tributaria e permette anche di verificare la corrispondenza con i dati anagrafici. Quando fu presentato, nel 2014, <a href="https://www.01net.it/il-codice-fiscale-e-corretto-verificalo-sul-sito-delle-entrate/" rel="noopener noreferrer">01net.it</a> lo indicava come utile per omocodia e per i nati in comuni ceduti ad altri Stati. Le funzioni attuali possono essere diverse, quindi leggi la pagina del servizio.</p>
+
+  <h2>Qual è la differenza tra le due verifiche?</h2>
+  <p>La verifica formale controlla come è scritto il codice. La verifica ufficiale controlla se il codice esiste nell’anagrafe tributaria e a chi corrisponde.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Domanda</th><th>Verifica formale</th><th>Verifica ufficiale</th></tr></thead>
+    <tbody>
+      <tr><td>Il codice è scritto bene?</td><td>Sì</td><td>Sì</td></tr>
+      <tr><td>La lettera di controllo è giusta?</td><td>Sì</td><td>Sì</td></tr>
+      <tr><td>Il codice è stato assegnato a qualcuno?</td><td>No</td><td>Sì</td></tr>
+      <tr><td>Corrisponde a nome e data di nascita?</td><td>No</td><td>Sì, con i dati inseriti</td></tr>
+      <tr><td>Gestisce i comuni soppressi e ceduti?</td><td>Solo se il codice è nel nostro elenco</td><td>Sì</td></tr>
+      <tr><td>Ha valore ufficiale?</td><td>No</td><td>Sì</td></tr>
+    </tbody></table></div>
+
+  <h2>Un codice con verifica formale positiva può comunque essere inesistente?</h2>
+  <p>Sì. <code>RSSMRA85T10H501O</code> supera il controllo formale, ma è un codice d’esempio di questa guida. Qualunque combinazione di dati plausibili produce un codice corretto nella forma, anche se nessuna persona lo possiede.</p>
+
+  <h2>Quando usare la verifica formale e quando quella ufficiale?</h2>
+  <p>Usa la formale per trovare errori di battitura e aggiungi la ufficiale ogni volta che il codice ha effetti legali o fiscali.</p>
+  <ol>
+    <li>Per un errore di battitura o di calcolo, parti dalla verifica formale: è immediata e lavora nel browser.</li>
+    <li>Prima di usare il codice in un atto, in un contratto o in una pratica fiscale, controllalo anche con la verifica ufficiale.</li>
+    <li>Se il codice ha lettere al posto di cifre, o la persona è nata in un comune soppresso o ceduto, usa quella ufficiale.</li>
+  </ol>
+
+  <h2>Come tutelo i dati quando verifico un codice fiscale?</h2>
+  <p>Il nostro strumento elabora il codice nel browser e non lo invia a server né ad analytics. Sul sito dell’Agenzia i dati sono trattati dall’Agenzia stessa. Codice Fiscale Pro è indipendente e non è affiliato all’Agenzia delle Entrate. Vedi la <a href="/it/privacy/">privacy policy</a>.</p>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">Agenzia delle Entrate</a>: servizio di verifica del codice fiscale.</li>
+    <li><a href="https://www.01net.it/il-codice-fiscale-e-corretto-verificalo-sul-sito-delle-entrate/" rel="noopener noreferrer">01net.it</a> (23 aprile 2014): descrizione del servizio al lancio.</li>
+  </ul>
+</Guide>

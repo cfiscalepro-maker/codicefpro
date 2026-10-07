@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import Guide from '../../layouts/Guide.astro';
+import Calculator from '../../components/Calculator.tsx';
+import Decoder from '../../components/Decoder.tsx';
+import Globe from '../../components/Globe.astro';
+import HomeSections from '../../components/HomeSections.astro';
+import { homeFaq } from '../../content/home';
+import { locales, pageSlugs, pagePath, localeMeta, type Locale } from '../../i18n/config';
+import { ui } from '../../i18n/ui';
+import { localeContent, localeGuides } from '../../i18n/content';
+import { guideList, resolveLinks, guidePathFor } from '../../i18n/alternates';
+
+export function getStaticPaths() {
+  const out: { params: { locale: string; slug: string | undefined }; props: { kind: string; key?: string } }[] = [];
+  for (const l of locales.filter((x) => x !== 'it')) {
+    if (!localeContent(l)) continue;
+    out.push({ params: { locale: l, slug: undefined }, props: { kind: 'home' } });
+    for (const k of ['inverse', 'verify', 'about', 'contact', 'privacy', 'terms', ...(Object.keys(localeGuides(l)).length ? (['guides'] as const) : [])] as const) out.push({ params: { locale: l, slug: pageSlugs[l][k] }, props: { kind: k } });
+    for (const [key, g] of Object.entries(localeGuides(l))) out.push({ params: { locale: l, slug: `${pageSlugs[l].guides}/${g.slug}` }, props: { kind: 'guide', key } });
+  }
+  return out;
+}
+const locale = Astro.params.locale as Locale;
+const { kind, key } = Astro.props;
+const c = localeContent(locale)!;
+const t = ui[locale];
+const lm = localeMeta[locale];
+const R = (h: string) => resolveLinks(h, locale);
+const path = kind === 'home' ? pagePath(locale, 'home') : kind === 'guide' ? `/${locale}/${pageSlugs[locale].guides}/${localeGuides(locale)[key!].slug}/` : pagePath(locale, kind as never);
+const g = kind === 'guide' ? localeGuides(locale)[key!] : undefined;
+---
+{kind === 'guide' && g && (
+  <Guide title={g.title} h1={g.h1} description={g.description} path={path} summary={g.summary} audience={g.audience} datePublished={g.datePublished} faq={g.faq} related={g.related}>
+    <Fragment set:html={R(g.body)} />
+  </Guide>
+)}
+{kind === 'home' && (
+  <Base title={c.home.title} description={c.home.description} path={path} faq={homeFaq[locale]}>
+    <div class="relative isolate overflow-hidden">
+      <Globe />
+      <section class="mx-auto max-w-page px-6 pb-8 pt-16">
+        <p class="eyebrow">{c.home.eyebrow}</p>
+        <h1 class="display mt-3 text-4xl text-ink md:text-5xl">{c.home.h1}</h1>
+        <p class="mt-4 max-w-2xl text-base">{c.home.intro}</p>
+      </section>
+      <section class="mx-auto max-w-3xl px-6">
+        <Calculator client:load t={t.calc} locale={locale} omoHref={guidePathFor(locale, 'cos-e-l-omocodia')} />
+        <p class="mt-4 text-sm" set:html={R(c.home.afterTool)} />
+      </section>
+    </div>
+    <HomeSections locale={locale} />
+  </Base>
+)}
+{(kind === 'inverse' || kind === 'verify') && (
+  <Base title={c[kind].title} description={c[kind].description} path={path}>
+    <section class="mx-auto max-w-page px-6 pb-8 pt-16">
+      <p class="eyebrow">{c[kind].eyebrow}</p>
+      <h1 class="display mt-3 text-4xl text-ink md:text-5xl">{c[kind].h1}</h1>
+      <p class="mt-4 max-w-2xl">{c[kind].intro}</p>
+    </section>
+    <section class="mx-auto max-w-3xl px-6"><Decoder client:load mode={kind} t={t.dec} locale={locale} intl={lm.intl} /></section>
+    <section class="legal mx-auto mt-12 max-w-3xl px-6" set:html={R(c[kind].body)} />
+  </Base>
+)}
+{(kind === 'about' || kind === 'contact' || kind === 'privacy' || kind === 'terms') && (
+  <Base title={c[kind].title} description={c[kind].description} path={path}>
+    <article class="legal mx-auto max-w-3xl px-6 py-16">
+      {c[kind].eyebrow && <p class="eyebrow">{c[kind].eyebrow}</p>}
+      <h1 class="display mt-3 text-4xl text-ink">{c[kind].h1}</h1>
+      <Fragment set:html={R(c[kind].body)} />
+    </article>
+  </Base>
+)}
+{kind === 'guides' && (
+  <Base title={c.guides.title} description={c.guides.description} path={path}>
+    <article class="legal mx-auto max-w-3xl px-6 py-16">
+      <p class="eyebrow">{t.guide.guides}</p>
+      <h1 class="display mt-3 text-4xl text-ink md:text-5xl">{c.guides.h1}</h1>
+      <p set:html={R(c.guides.intro)} />
+      <ul class="!list-none !pl-0">
+        {guideList(locale).map((x) => (<li class="mt-5"><a class="font-semibold" href={x.path}>{x.title}</a><br /><span>{x.desc}</span></li>))}
+      </ul>
+      {c.guides.other && <p class="mt-8 text-sm" set:html={R(c.guides.other)} />}
+    </article>
+  </Base>
+)}

@@ -1,0 +1,59 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Il codice fiscale inverso permette di scoprire nome e cognome?', a: 'No. Le prime sei lettere derivano da consonanti e vocali di cognome e nome, e persone diverse possono avere le stesse lettere. Si possono formulare ipotesi, ma non ricavare i dati con certezza.' },
+  { q: 'Cosa si ricava con certezza da un codice fiscale?', a: 'Sesso, giorno e mese di nascita, le ultime due cifre dell’anno e il codice del comune o dello Stato di nascita. Dal codice del luogo, con l’elenco dei comuni, si ricava il nome del luogo.' },
+  { q: 'Il codice fiscale inverso è ufficiale?', a: 'No. Un calcolo inverso legge la struttura del codice. Per sapere se un codice esiste e corrisponde a una persona si usa il servizio dell’Agenzia delle Entrate.' },
+  { q: 'È sicuro inserire un codice fiscale in un sito di decodifica?', a: 'Dipende dal sito. Conviene scegliere strumenti che elaborano il dato nel browser, come questo, senza inviarlo a un server, e non inserire codici di altre persone senza motivo.' },
+];
+---
+<Guide
+  title="Cos’è il codice fiscale inverso e cosa può dirti | Codice Fiscale Pro"
+  h1="Cos’è il codice fiscale inverso e cosa può dirti"
+  description="Codice fiscale inverso: cos’è, quali dati si ricavano (data, sesso, luogo) e perché non si possono ricostruire nome e cognome. Con esempi concreti."
+  path="/it/guide/cos-e-il-codice-fiscale-inverso/"
+  summary="Il codice fiscale inverso è il procedimento che legge un codice già esistente e ne ricava i dati contenuti: sesso, giorno e mese di nascita, ultime due cifre dell’anno e luogo di nascita. Nome e cognome non si ricostruiscono, perché le sei lettere iniziali sono comuni a molti nomi: RSS vale per Rossi, Rosso e Ross, MRA per Mario, Mauro e Maria."
+  audience="chi vuole sapere cosa dice un codice fiscale, per esempio per controllare un modulo compilato o un dato in un archivio. Non serve per identificare persone sconosciute, cosa che il codice non consente."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['come-leggere-e-decodificare-un-codice-fiscale', 'cos-e-l-omocodia', 'verifica-formale-e-verifica-ufficiale', 'codice-belfiore']}
+>
+  <h2>Cos’è il codice fiscale inverso?</h2>
+  <p>È il calcolo che parte dal codice fiscale e arriva ai dati anagrafici che lo hanno generato, cioè il percorso opposto rispetto al <a href="/it/guide/come-si-calcola-il-codice-fiscale/">calcolo normale</a>. Chi cerca “calcolo codice fiscale inverso” vuole quasi sempre sapere data di nascita, sesso e comune di nascita.</p>
+
+  <h2>Quali dati si ricavano con un codice fiscale inverso?</h2>
+  <p>Con certezza si ricavano il sesso, il giorno, il mese, le ultime due cifre dell’anno e il codice del luogo di nascita, che l’<a href="/it/codice-fiscale-inverso/">elenco dei comuni e degli Stati</a> trasforma nel nome del luogo. Si capisce anche se il codice è una variante omocodica.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Dato</th><th>Si ricava?</th><th>Nota</th></tr></thead>
+    <tbody>
+      <tr><td>Sesso</td><td>Sì</td><td>Giorno superiore a 40 indica una donna</td></tr>
+      <tr><td>Giorno e mese di nascita</td><td>Sì</td><td>La lettera del mese va tradotta</td></tr>
+      <tr><td>Anno di nascita</td><td>In parte</td><td>Solo due cifre, il secolo resta da stabilire</td></tr>
+      <tr><td>Luogo di nascita</td><td>Sì</td><td>Dal codice Belfiore, se presente nell’elenco</td></tr>
+      <tr><td>Cognome e nome</td><td>No</td><td>Si ricavano solo ipotesi</td></tr>
+    </tbody></table></div>
+
+  <h2>Perché non si possono ricavare nome e cognome?</h2>
+  <p>Perché le prime sei lettere usano solo consonanti e, se servono, vocali, e molti nomi producono lo stesso risultato. Rossi, Rosso e Ross danno tutti <code>RSS</code>. Mario, Mauro e Maria danno tutti <code>MRA</code>. Alcune fonti parlano di buone probabilità di indovinare il nome, ma resta una congettura, e per il cognome è ancora più difficile.</p>
+
+  <h2>Come si usa il codice fiscale inverso?</h2>
+  <p>Si inserisce il codice nello strumento di decodifica e si legge il risultato, in tre passaggi.</p>
+  <ol>
+    <li>Apri lo <a href="/it/codice-fiscale-inverso/">strumento di decodifica</a>.</li>
+    <li>Scrivi i 16 caratteri del codice, anche con lettere al posto di alcune cifre.</li>
+    <li>Leggi sesso, data, luogo e Belfiore, e controlla l’esito del controllo formale.</li>
+  </ol>
+  <p>Se l’anno ha due letture possibili, per esempio 2005 e 1905, lo strumento le mostra entrambe e spetta a te scegliere quella plausibile.</p>
+
+  <h2>Il codice fiscale inverso è una verifica ufficiale?</h2>
+  <p>No. Decodificare un codice significa leggerne la struttura. Non dice se il codice è stato assegnato, né a chi. Per la conferma ufficiale vedi la guida sulla <a href="/it/guide/verifica-formale-e-verifica-ufficiale/">differenza tra verifica formale e ufficiale</a> e il <a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">servizio dell’Agenzia delle Entrate</a>.</p>
+
+  <h2>Come tutelare la privacy quando si decodifica un codice?</h2>
+  <p>Un codice fiscale è un dato personale. Il nostro strumento lo elabora nel browser e non lo invia a server o a Google Analytics. Con altri siti conviene verificare come trattano il dato, ed è meglio non inserire codici di altre persone senza una ragione concreta.</p>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://lentepubblica.it/contabilita-bilancio-tasse-tributi/codice-fiscale-inverso-cose-a-cosa-serve-e-come-si-calcola/" rel="noopener noreferrer">Lentepubblica.it</a>: dati ricavabili e limiti del calcolo inverso.</li>
+    <li><a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a>: regole di composizione delle lettere.</li>
+  </ul>
+</Guide>

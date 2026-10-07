@@ -1,0 +1,54 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Il codice fiscale e la tessera sanitaria sono la stessa cosa?', a: 'No. Il codice fiscale è l’identificativo di 16 caratteri. La tessera sanitaria è il documento in plastica che lo riporta, insieme ai dati della persona e alla funzione sanitaria.' },
+  { q: 'Il codice fiscale è gratuito?', a: 'Sì, l’attribuzione da parte dell’Agenzia delle Entrate è gratuita. Il calcolo con uno strumento online, come questo, è gratuito ma ha valore solo informativo.' },
+  { q: 'Il codice fiscale delle aziende è uguale a quello delle persone?', a: 'No. Per società ed enti il codice fiscale è formato da 11 cifre numeriche. Per le persone fisiche ha 16 caratteri tra lettere e cifre.' },
+  { q: 'Due persone possono avere lo stesso codice fiscale?', a: 'In casi rari il calcolo darebbe lo stesso codice a due persone con dati identici. Si chiama omocodia, e l’Agenzia delle Entrate assegna una variante con alcune cifre sostituite da lettere.' },
+];
+---
+<Guide
+  title="Cos’è il codice fiscale e come funziona | Codice Fiscale Pro"
+  h1="Cos’è il codice fiscale e come funziona"
+  description="Cos’è il codice fiscale: definizione, chi lo assegna, a cosa serve, come è fatto e se cambia nel tempo. Guida introduttiva con rimandi agli strumenti."
+  path="/it/guide/cos-e-il-codice-fiscale/"
+  summary="Il codice fiscale è un codice alfanumerico di 16 caratteri che identifica una persona fisica ai fini fiscali in Italia. Lo assegna l’Agenzia delle Entrate e compare sulla tessera sanitaria. Si usa per sanità, lavoro, banche, contratti e tasse. Le prime 15 posizioni derivano da cognome, nome, data di nascita, sesso e luogo di nascita; la sedicesima è una lettera di controllo."
+  audience="chi si chiede cosa sia il codice fiscale, a cosa serva e come è fatto, compresi i residenti stranieri in Italia. È una guida introduttiva: per i dettagli del calcolo passa alla guida dedicata."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['come-si-calcola-il-codice-fiscale', 'come-leggere-e-decodificare-un-codice-fiscale', 'come-trovare-il-proprio-codice-fiscale', 'quando-puo-cambiare-il-codice-fiscale']}
+>
+  <h2>Cos’è il codice fiscale?</h2>
+  <p>Il codice fiscale è un codice alfanumerico che identifica in modo univoco un contribuente nell’anagrafe tributaria italiana. Per le persone fisiche ha 16 caratteri, per società ed enti 11 cifre, come riporta <a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a>. La disciplina di base è nel DPR 29 settembre 1973, n. 605, sull’anagrafe tributaria e sul codice fiscale, mentre le regole di composizione sono fissate dal decreto del Ministero delle Finanze del 23 dicembre 1976.</p>
+
+  <h2>Chi assegna il codice fiscale e chi lo possiede?</h2>
+  <p>Lo assegna l’Agenzia delle Entrate, attraverso canali diversi. Per i neonati lo attribuisce il Comune al momento della prima iscrizione all’anagrafe, come spiega <a href="https://www.informazionefiscale.it/Codice-fiscale-cos-e-come-si-richiede" rel="noopener noreferrer">Informazione Fiscale</a>. I cittadini UE che intendono soggiornare in Italia presentano il modello AA4/8 a un ufficio dell’Agenzia. Per i cittadini extra UE il codice è attribuito dallo Sportello Unico per l’Immigrazione o dalla Questura, in base al permesso richiesto, secondo le <a href="https://www.esteri.it/it/servizi-consolari-e-visti/italiani-all-estero/codice_fiscale/" rel="noopener noreferrer">pagine del Ministero degli Esteri</a>.</p>
+
+  <h2>A cosa serve il codice fiscale?</h2>
+  <p>Serve a identificare la persona nei rapporti con la pubblica amministrazione e con soggetti privati. Gli usi più comuni sono:</p>
+  <ul>
+    <li>assistenza sanitaria: ricette, esami, scelta del medico;</li>
+    <li>lavoro: contratti, buste paga e Certificazione Unica;</li>
+    <li>tasse: dichiarazione dei redditi, versamenti, detrazioni;</li>
+    <li>banche, assicurazioni, utenze e contratti di affitto o acquisto;</li>
+    <li>iscrizioni a scuola, università e servizi online.</li>
+  </ul>
+
+  <h2>Come è fatto un codice fiscale?</h2>
+  <p>I 16 caratteri seguono sempre lo stesso schema: 3 lettere dal cognome, 3 dal nome, 2 cifre dell’anno di nascita, 1 lettera per il mese, 2 cifre per giorno e sesso, 4 caratteri per il luogo di nascita e 1 lettera di controllo. Per l’esempio <code>RSSMRA85T10H501O</code>, <code>H501</code> indica Roma e <code>O</code> è la lettera di controllo. Il calcolo completo è nella guida <a href="/it/guide/come-si-calcola-il-codice-fiscale/">come si calcola il codice fiscale</a>, la lettura carattere per carattere in <a href="/it/guide/come-leggere-e-decodificare-un-codice-fiscale/">come leggere un codice fiscale</a>.</p>
+
+  <h2>Il codice fiscale cambia o scade?</h2>
+  <p>Non ha scadenza, e vale solo il codice rilasciato e certificato dall’Agenzia delle Entrate, come precisa la <a href="https://www.agenziaentrate.gov.it/portale/mini-guida-codice-fiscale-per-stranieri" rel="noopener noreferrer">brochure «Codice fiscale stranieri» dell’Agenzia delle Entrate</a>. Il codice resta lo stesso nel tempo, anche con il cambio di residenza o di stato civile. Può cambiare solo in casi particolari, come la correzione di un dato anagrafico da cui deriva o l’assegnazione di una variante per omocodia. I dettagli sono nella guida <a href="/it/guide/quando-puo-cambiare-il-codice-fiscale/">quando può cambiare il codice fiscale</a>.</p>
+
+  <h2>Come si calcola o si verifica il codice fiscale online?</h2>
+  <p>Con il <a href="/it/">calcolo del codice fiscale</a> inserisci cognome, nome, data, sesso e luogo di nascita e ottieni il codice nel tuo browser, senza inviare dati. Con la <a href="/it/verifica-codice-fiscale/">verifica</a> controlli che un codice sia costruito correttamente. Per sapere se un codice è davvero assegnato a una persona serve il servizio dell’<a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">Agenzia delle Entrate</a>.</p>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a>: caratteri, decreto del 1976, limiti del calcolo.</li>
+    <li><a href="https://ildiritto.it/?p=8043" rel="noopener noreferrer">Il Diritto</a>: attribuzione alla nascita.</li>
+    <li><a href="https://www.informazionefiscale.it/Codice-fiscale-cos-e-come-si-richiede" rel="noopener noreferrer">Informazione Fiscale</a>: chi attribuisce il codice e il modello AA4/8.</li>
+    <li><a href="https://www.esteri.it/it/servizi-consolari-e-visti/italiani-all-estero/codice_fiscale/" rel="noopener noreferrer">Ministero degli Esteri</a>: codice fiscale per cittadini stranieri.</li>
+    <li><a href="https://www.agenziaentrate.gov.it/portale/mini-guida-codice-fiscale-per-stranieri" rel="noopener noreferrer">Agenzia delle Entrate</a>: brochure «Codice fiscale stranieri», assenza di scadenza e spedizione.</li>
+  </ul>
+</Guide>

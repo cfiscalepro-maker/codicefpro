@@ -1,0 +1,12 @@
+{
+  "H501": { "de": ["Rom"], "fr": ["Rome"], "es": [], "en": ["Rome"] },
+  "F205": { "de": ["Mailand"], "fr": ["Milan"], "es": ["Milán"], "en": ["Milan"] },
+  "F839": { "de": ["Neapel"], "fr": ["Naples"], "es": ["Nápoles"], "en": ["Naples"] },
+  "L219": { "de": [], "fr": [], "es": ["Turín"], "en": [] },
+  "D612": { "de": ["Florenz"], "fr": ["Florence"], "es": ["Florencia"], "en": ["Florence"] },
+  "L736": { "de": ["Venedig"], "fr": ["Venise"], "es": ["Venecia"], "en": ["Venice"] },
+  "D969": { "de": ["Genua"], "fr": ["Gênes"], "es": ["Génova"], "en": ["Genoa"] },
+  "G224": { "de": [], "fr": ["Padoue"], "es": [], "en": ["Padua"] },
+  "I754": { "de": ["Syrakus"], "fr": ["Syracuse"], "es": [], "en": ["Syracuse"] },
+  "E897": { "de": [], "fr": ["Mantoue"], "es": [], "en": [] }
+}

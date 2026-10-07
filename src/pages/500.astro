@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Errore del server | Codice Fiscale Pro" description="Si è verificato un errore temporaneo. Riprova tra qualche istante." path="/500/" noindex>
+  <section class="mx-auto max-w-3xl px-6 py-24">
+    <p class="eyebrow">Errore 500</p>
+    <h1 class="display mt-3 text-4xl text-ink md:text-5xl">Qualcosa è andato storto</h1>
+    <p class="mt-4">Il server ha avuto un problema temporaneo. I dati che hai inserito nel calcolatore restano nel tuo browser e non sono stati inviati a nessuno. Riprova tra qualche istante.</p>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a href="/it/" class="inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 font-medium text-on-primary">Torna al calcolo</a>
+      <a href="/it/contatti/" class="inline-flex h-12 items-center justify-center rounded-full border border-hairline bg-elevated px-6 font-medium text-ink">Segnala il problema</a>
+    </div>
+  </section>
+</Base>

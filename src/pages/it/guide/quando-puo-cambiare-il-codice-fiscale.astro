@@ -1,0 +1,54 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Il codice fiscale cambia con il matrimonio?', a: 'No. Il codice usa il cognome di nascita, quindi non cambia se cambia lo stato civile o il cognome d’uso.' },
+  { q: 'Il codice fiscale cambia se cambio residenza?', a: 'No. La residenza non entra nel calcolo. Il codice usa il luogo di nascita, che non varia.' },
+  { q: 'Cosa devo fare se il mio codice fiscale è errato?', a: 'Rivolgiti al Comune di residenza o a un ufficio dell’Agenzia delle Entrate con un documento di identità valido, per far correggere i dati. Poi comunica il codice corretto a datore di lavoro, banca e medico.' },
+  { q: 'Perché il mio codice ha lettere al posto di alcune cifre?', a: 'È probabile che l’Agenzia delle Entrate ti abbia assegnato una variante per omocodia, cioè un codice in cui alcune cifre sono sostituite da lettere per evitare una coincidenza con un’altra persona.' },
+];
+---
+<Guide
+  title="Quando può cambiare il codice fiscale | Codice Fiscale Pro"
+  h1="Quando può cambiare il codice fiscale"
+  description="Il codice fiscale cambia con il matrimonio o la residenza? No. Ecco i casi in cui può cambiare: correzione dei dati anagrafici e omocodia."
+  path="/it/guide/quando-puo-cambiare-il-codice-fiscale/"
+  summary="Il codice fiscale non cambia con matrimonio, residenza o stato civile. Può cambiare solo quando si corregge un dato da cui deriva (cognome di nascita, nome, data, sesso o luogo di nascita) o quando l’Agenzia delle Entrate assegna una variante per omocodia. Il codice valido resta sempre quello comunicato dall’Agenzia."
+  audience="chi ha cambiato cognome o residenza e vuole sapere se serve un nuovo codice, chi ha notato un errore sulla tessera sanitaria e chi ha ricevuto un codice con lettere inattese."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['cos-e-l-omocodia', 'come-trovare-il-proprio-codice-fiscale', 'errori-comuni-nel-codice-fiscale', 'cos-e-il-codice-fiscale']}
+>
+  <h2>Il codice fiscale cambia con il matrimonio o con il cambio di residenza?</h2>
+  <p>No. Il codice deriva dal cognome di nascita, dal nome, dalla data e dal luogo di nascita e dal sesso, che non dipendono dallo stato civile o dalla residenza. Una persona che si sposa mantiene il codice di prima, anche se usa il cognome del coniuge.</p>
+
+  <h2>Quando può cambiare il codice fiscale?</h2>
+  <p>Può cambiare quando viene rettificato uno dei dati che compongono il codice, dato che il codice si ricalcola da quelli. I casi principali:</p>
+  <ul>
+    <li>correzione del cognome o del nome registrati con un errore;</li>
+    <li>correzione della data o del luogo di nascita;</li>
+    <li>rettifica del sesso nei registri dello stato civile;</li>
+    <li>assegnazione di una variante per omocodia.</li>
+  </ul>
+
+  <h2>Come si corregge un codice fiscale sbagliato?</h2>
+  <p>In caso di errori ci si può rivolgere al Comune di residenza o a un ufficio dell’Agenzia delle Entrate, presentando un documento di identità valido, come indica <a href="https://www.lentepubblica.it/cittadini-e-imprese/codice-fiscale-cittadini-enti-organizzazioni/" rel="noopener noreferrer">Lentepubblica.it</a>. Prima di andare, controlla con il <a href="/it/">calcolo</a> quale codice dovrebbe risultare dai tuoi dati, così saprai cosa far correggere.</p>
+
+  <h2>Cosa succede in caso di omocodia?</h2>
+  <p>L’Agenzia delle Entrate può assegnare un codice in cui una o più cifre sono sostituite da lettere, partendo da destra, e ricalcola la lettera di controllo. Per i dettagli leggi <a href="/it/guide/cos-e-l-omocodia/">cos’è l’omocodia</a>. Il codice valido è quello che ti viene comunicato.</p>
+
+  <h2>A chi comunicare il nuovo codice dopo una modifica?</h2>
+  <p>Se il codice cambia, avvisa chi lo ha registrato:</p>
+  <ol>
+    <li>datore di lavoro o committenti;</li>
+    <li>banca, assicurazioni e fornitori di utenze;</li>
+    <li>medico di base e ASL;</li>
+    <li>scuola o università, se sei iscritto.</li>
+  </ol>
+  <p>Chiedi all’Agenzia delle Entrate come trattare i documenti già emessi con il codice precedente.</p>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://www.lentepubblica.it/cittadini-e-imprese/codice-fiscale-cittadini-enti-organizzazioni/" rel="noopener noreferrer">Lentepubblica.it</a>: correzione degli errori.</li>
+    <li><a href="https://www.informazionefiscale.it/codice-fiscale-verifica-dati-agenzia-delle-entrate" rel="noopener noreferrer">Informazione Fiscale</a>: gestione dell’omocodia da parte dell’Agenzia.</li>
+  </ul>
+</Guide>

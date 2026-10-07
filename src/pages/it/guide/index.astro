@@ -1,0 +1,14 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { guides, guidePath } from '../../../data/guides';
+---
+<Base title="Guide al codice fiscale | Codice Fiscale Pro" description="Guide chiare sul codice fiscale: come si calcola, come si legge, omocodia, codice Belfiore, nati all'estero, neonati e verifica." path="/it/guide/">
+  <article class="legal mx-auto max-w-3xl px-6 py-16">
+    <p class="eyebrow">Guide</p>
+    <h1 class="display mt-3 text-4xl text-ink md:text-5xl">Guide al codice fiscale</h1>
+    <p>Dodici guide scritte da Codice Fiscale Pro Team. Ognuna risponde a una domanda precisa e rimanda allo strumento giusto: <a href="/it/">calcolo</a>, <a href="/it/codice-fiscale-inverso/">codice fiscale inverso</a> o <a href="/it/verifica-codice-fiscale/">verifica</a>.</p>
+    <ul class="!list-none !pl-0">
+      {guides.map((g) => (<li class="mt-5"><a class="font-semibold" href={guidePath(g.slug)}>{g.title}</a><br /><span>{g.desc}</span></li>))}
+    </ul>
+  </article>
+</Base>

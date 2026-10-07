@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Pagina non trovata | Codice Fiscale Pro" description="La pagina cercata non esiste o è stata spostata." path="/404/" noindex>
+  <section class="mx-auto max-w-3xl px-6 py-24">
+    <p class="eyebrow">Errore 404</p>
+    <h1 class="display mt-3 text-4xl text-ink md:text-5xl">Pagina non trovata</h1>
+    <p class="mt-4">L’indirizzo che hai aperto non esiste o è stato spostato. Puoi tornare al calcolo o scegliere uno degli strumenti.</p>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a href="/it/" class="inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 font-medium text-on-primary">Calcolo codice fiscale</a>
+      <a href="/it/guide/" class="inline-flex h-12 items-center justify-center rounded-full border border-hairline bg-elevated px-6 font-medium text-ink">Vai alle guide</a>
+    </div>
+    <ul class="mt-8 space-y-2 text-sm">
+      <li><a class="text-link underline" href="/it/codice-fiscale-inverso/">Codice fiscale inverso</a></li>
+      <li><a class="text-link underline" href="/it/verifica-codice-fiscale/">Verifica codice fiscale</a></li>
+    </ul>
+  </section>
+</Base>

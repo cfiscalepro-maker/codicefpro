@@ -1,0 +1,100 @@
+---
+// Decorative background. aria-hidden, no pointer events, loaded after idle, skipped on Save-Data / low memory.
+---
+<div data-globe aria-hidden="true"
+  class="pointer-events-none absolute left-1/2 top-1/2 -z-10 aspect-square w-[150vw] -translate-x-1/2 -translate-y-1/2 select-none opacity-0 transition-opacity duration-1000 data-[ready]:opacity-30 dark:data-[ready]:opacity-40 md:w-[820px]"></div>
+<script>
+  import type * as ThreeNS from '../lib/globe/three-lite';
+
+  const host = document.querySelector<HTMLElement>('[data-globe]');
+  const nav = navigator as Navigator & { connection?: { saveData?: boolean }; deviceMemory?: number };
+  if (host && !nav.connection?.saveData && !(nav.deviceMemory && nav.deviceMemory <= 2)) {
+    const run = () => start(host).catch(() => host.remove());
+    'requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 2500 }) : setTimeout(run, 1200);
+  }
+
+  async function start(host: HTMLElement) {
+    const mobile = matchMedia('(max-width: 767px), (pointer: coarse)').matches;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const ac = new AbortController();
+
+    // Local, build-time-generated land dots (see scripts/build-globe-dots.mjs). No external requests.
+    const [res, T] = await Promise.all([fetch('/globe/land-dots.bin', { signal: ac.signal }), import('../lib/globe/three-lite') as Promise<typeof ThreeNS>]);
+    if (!res.ok) throw new Error('globe data');
+    const raw = new Uint16Array(await res.arrayBuffer());
+    const n = mobile ? Math.min(raw.length / 2, 1800) : raw.length / 2;
+
+    const pos = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) {
+      const lon = (raw[2 * i] / 100 - 180) * (Math.PI / 180), lat = (raw[2 * i + 1] / 100 - 90) * (Math.PI / 180);
+      pos[3 * i] = Math.cos(lat) * Math.sin(lon); pos[3 * i + 1] = Math.sin(lat); pos[3 * i + 2] = Math.cos(lat) * Math.cos(lon);
+    }
+
+    const renderer = new T.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power', stencil: false });
+    renderer.setPixelRatio(mobile ? 1 : Math.min(devicePixelRatio || 1, 1.5));
+    const canvas = renderer.domElement;
+    canvas.style.cssText = 'display:block;width:100%;height:100%';
+    host.appendChild(canvas);
+
+    const dot = document.createElement('canvas'); dot.width = dot.height = 32;
+    const g = dot.getContext('2d')!; g.beginPath(); g.arc(16, 16, 15, 0, Math.PI * 2); g.fillStyle = '#fff'; g.fill();
+    const tex = new T.CanvasTexture(dot);
+
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute('position', new T.BufferAttribute(pos, 3));
+    const material = new T.PointsMaterial({ map: tex, size: mobile ? 0.05 : 0.03, sizeAttenuation: true, alphaTest: 0.5, transparent: false });
+    // Invisible sphere that only writes depth, so dots on the far side are hidden.
+    const occGeo = new T.SphereGeometry(0.99, mobile ? 18 : 28, mobile ? 12 : 20);
+    const occMat = new T.MeshBasicMaterial({ colorWrite: false });
+    const occluder = new T.Mesh(occGeo, occMat); occluder.renderOrder = -1;
+
+    const spin = new T.Group(); spin.add(occluder, new T.Points(geometry, material));
+    const tilt = new T.Group(); tilt.rotation.z = 0.41; tilt.add(spin);
+    const scene = new T.Scene(); scene.add(tilt);
+    const camera = new T.PerspectiveCamera(30, 1, 0.1, 20); camera.position.z = 4.2;
+
+    const applyColor = () => material.color.set(getComputedStyle(document.documentElement).getPropertyValue('--cf-ink').trim() || '#171717');
+    applyColor();
+    const resize = () => { const w = host.clientWidth, h = host.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); renderer.render(scene, camera); };
+
+    let raf = 0, last = 0, running = false, visible = true, destroyed = false;
+    const minDelta = 1000 / (mobile ? 24 : 40);
+    const frame = (t: number) => {
+      raf = requestAnimationFrame(frame);
+      if (t - last < minDelta) return;
+      spin.rotation.y += Math.min((t - last) / 1000, 0.1) * 0.06; last = t;
+      renderer.render(scene, camera);
+    };
+    const play = () => { if (running || destroyed || reduced.matches || !visible || document.hidden) return; running = true; last = performance.now(); raf = requestAnimationFrame(frame); };
+    const pause = () => { running = false; cancelAnimationFrame(raf); };
+
+    const ro = new ResizeObserver(resize); ro.observe(host);
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; visible ? play() : pause(); }); io.observe(host);
+    const mo = new MutationObserver(() => { applyColor(); if (!running) renderer.render(scene, camera); });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    const onVisibility = () => (document.hidden ? pause() : play());
+    const onMotion = () => (reduced.matches ? pause() : play());
+    const onHide = (e: PageTransitionEvent) => (e.persisted ? pause() : destroy());
+    const onShow = (e: PageTransitionEvent) => { if (e.persisted) play(); };
+    const onLost = (e: Event) => { e.preventDefault(); destroy(); };
+    document.addEventListener('visibilitychange', onVisibility);
+    reduced.addEventListener('change', onMotion);
+    addEventListener('pagehide', onHide); addEventListener('pageshow', onShow);
+    canvas.addEventListener('webglcontextlost', onLost);
+
+    function destroy() {
+      if (destroyed) return; destroyed = true; pause(); ac.abort();
+      io.disconnect(); ro.disconnect(); mo.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+      reduced.removeEventListener('change', onMotion);
+      removeEventListener('pagehide', onHide); removeEventListener('pageshow', onShow);
+      canvas.removeEventListener('webglcontextlost', onLost);
+      geometry.dispose(); material.dispose(); tex.dispose(); occGeo.dispose(); occMat.dispose();
+      renderer.dispose(); renderer.forceContextLoss(); canvas.remove();
+    }
+
+    resize();                      // draws the first (static) frame
+    host.setAttribute('data-ready', '');
+    play();                        // no-op under prefers-reduced-motion
+  }
+</script>

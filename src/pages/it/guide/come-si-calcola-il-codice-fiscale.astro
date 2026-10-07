@@ -1,0 +1,125 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Si può calcolare il codice fiscale a mano?', a: 'Sì. Servono cognome, nome, data di nascita, sesso e il codice del comune o dello Stato di nascita. Si ricavano le tre lettere del cognome e del nome, si scrivono data e sesso, si aggiunge il codice del luogo e si calcola la lettera di controllo con le due tabelle di conversione.' },
+  { q: 'Quanti caratteri ha il codice fiscale?', a: 'Il codice fiscale di una persona fisica ha 16 caratteri: 6 lettere da cognome e nome, 5 caratteri per data e sesso, 4 per il luogo e 1 di controllo.' },
+  { q: 'Perché per le donne si aggiunge 40 al giorno di nascita?', a: 'Le posizioni 10 e 11 contengono sia il giorno sia il sesso. Per gli uomini compare il giorno da 01 a 31, per le donne il giorno aumentato di 40, quindi da 41 a 71.' },
+  { q: 'Cosa si scrive se il cognome ha meno di tre lettere?', a: 'Si aggiunge la lettera X fino ad avere tre caratteri. Il cognome Fo, per esempio, dà FOX.' },
+  { q: 'Posso calcolare il codice fiscale di una persona nata all’estero?', a: 'Sì. Al posto del codice del comune si usa il codice dello Stato estero, che inizia sempre con la lettera Z. Per gli Stati Uniti d’America è Z404.' },
+];
+---
+<Guide
+  title="Come si calcola il codice fiscale: guida | Codice Fiscale Pro"
+  h1="Come si calcola il codice fiscale: guida passo passo"
+  description="Come si calcola il codice fiscale: regole per cognome, nome, data, sesso, luogo e lettera di controllo, con esempi svolti e casi particolari."
+  path="/it/guide/come-si-calcola-il-codice-fiscale/"
+  summary="Il codice fiscale si calcola in sette passaggi: 3 lettere dal cognome, 3 dal nome, le ultime 2 cifre dell’anno, una lettera per il mese, il giorno (più 40 per le donne), il codice del luogo di nascita e una lettera di controllo calcolata sui 15 caratteri precedenti. Con i dati di Mario Rossi, nato a Roma il 10 dicembre 1985, il risultato è RSSMRA85T10H501O."
+  audience="chi vuole capire come nasce un codice fiscale, controllarlo a mano o verificare un risultato. Vale per persone fisiche nate in Italia o all’estero. Non serve per ottenere il codice ufficiale, che rilascia l’Agenzia delle Entrate."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['cos-e-il-codice-fiscale', 'cos-e-l-omocodia', 'codice-belfiore', 'errori-comuni-nel-codice-fiscale']}
+>
+  <h2>Cos’è il codice fiscale e da cosa è composto?</h2>
+  <p>Il codice fiscale è un codice alfanumerico di 16 caratteri che identifica una persona fisica ai fini fiscali in Italia. Si ricava dai dati anagrafici con un algoritmo fissato dal decreto del Ministero delle Finanze del 23 dicembre 1976, come ricorda <a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a>. La tabella mostra le sette parti, con l’esempio RSSMRA85T10H501O.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Posizioni</th><th>Contenuto</th><th>Esempio</th></tr></thead>
+    <tbody>
+      <tr><td>1-3</td><td>Cognome</td><td><code>RSS</code></td></tr>
+      <tr><td>4-6</td><td>Nome</td><td><code>MRA</code></td></tr>
+      <tr><td>7-8</td><td>Anno di nascita (ultime due cifre)</td><td><code>85</code></td></tr>
+      <tr><td>9</td><td>Mese di nascita</td><td><code>T</code></td></tr>
+      <tr><td>10-11</td><td>Giorno di nascita e sesso</td><td><code>10</code></td></tr>
+      <tr><td>12-15</td><td>Comune o Stato estero di nascita</td><td><code>H501</code></td></tr>
+      <tr><td>16</td><td>Carattere di controllo</td><td><code>O</code></td></tr>
+    </tbody></table></div>
+
+  <h2>Come si calcolano le tre lettere del cognome?</h2>
+  <p>Si prendono le prime tre consonanti del cognome, nell’ordine in cui compaiono. Se le consonanti sono meno di tre, si aggiungono le vocali, sempre in ordine. Se mancano ancora lettere, si completa con X.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Cognome</th><th>Consonanti e vocali usate</th><th>Lettere</th></tr></thead>
+    <tbody>
+      <tr><td>Rossi</td><td>R, S, S</td><td><code>RSS</code></td></tr>
+      <tr><td>Bianchi</td><td>B, N, C</td><td><code>BNC</code></td></tr>
+      <tr><td>De Luca</td><td>D, L, C</td><td><code>DLC</code></td></tr>
+      <tr><td>Fo</td><td>F, poi la vocale O, poi X</td><td><code>FOX</code></td></tr>
+      <tr><td>Ai</td><td>nessuna consonante: A, I, poi X</td><td><code>AIX</code></td></tr>
+    </tbody></table></div>
+
+  <h2>Come si calcolano le tre lettere del nome?</h2>
+  <p>Se il nome ha quattro o più consonanti, si prendono la prima, la terza e la quarta. Con tre consonanti o meno vale la stessa regola del cognome: consonanti, poi vocali, poi X.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Nome</th><th>Consonanti</th><th>Lettere</th></tr></thead>
+    <tbody>
+      <tr><td>Gianluca</td><td>G, N, L, C (quattro): 1ª, 3ª e 4ª</td><td><code>GLC</code></td></tr>
+      <tr><td>Francesco</td><td>F, R, N, C, S, C: 1ª, 3ª e 4ª</td><td><code>FNC</code></td></tr>
+      <tr><td>Mario</td><td>M, R (due), più la prima vocale A</td><td><code>MRA</code></td></tr>
+      <tr><td>Anna Maria</td><td>N, N, M, R: 1ª, 3ª e 4ª</td><td><code>NMR</code></td></tr>
+      <tr><td>Lu</td><td>L, vocale U, poi X</td><td><code>LUX</code></td></tr>
+    </tbody></table></div>
+
+  <h2>Come si scrivono data di nascita e sesso nel codice fiscale?</h2>
+  <p>Si scrivono le ultime due cifre dell’anno, una lettera per il mese e il giorno di nascita su due cifre. Per le donne si somma 40 al giorno, perciò le posizioni 10 e 11 indicano anche il sesso. Dieci dicembre 1985, uomo, diventa <code>85T10</code>. Ventinove febbraio 2000, donna, diventa <code>00B69</code>.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Mese</th><th>Lettera</th><th>Mese</th><th>Lettera</th></tr></thead>
+    <tbody>
+      <tr><td>Gennaio</td><td><code>A</code></td><td>Luglio</td><td><code>L</code></td></tr>
+      <tr><td>Febbraio</td><td><code>B</code></td><td>Agosto</td><td><code>M</code></td></tr>
+      <tr><td>Marzo</td><td><code>C</code></td><td>Settembre</td><td><code>P</code></td></tr>
+      <tr><td>Aprile</td><td><code>D</code></td><td>Ottobre</td><td><code>R</code></td></tr>
+      <tr><td>Maggio</td><td><code>E</code></td><td>Novembre</td><td><code>S</code></td></tr>
+      <tr><td>Giugno</td><td><code>H</code></td><td>Dicembre</td><td><code>T</code></td></tr>
+    </tbody></table></div>
+  <p>Il codice contiene solo due cifre dell’anno, quindi il secolo non si ricava dal codice. Lo vediamo nello strumento di <a href="/it/codice-fiscale-inverso/">codice fiscale inverso</a>, che mostra tutte le date compatibili.</p>
+
+  <h2>Come si trova il codice del luogo di nascita?</h2>
+  <p>Il luogo si indica con il codice Belfiore, formato da una lettera e tre cifre. Roma è <code>H501</code>, Milano <code>F205</code>. Gli Stati esteri usano codici che iniziano con Z: per gli Stati Uniti d’America è <code>Z404</code>.</p>
+  <p>Un dettaglio che abbiamo verificato lavorando sui dati: nell’esportazione dell’<a href="https://arcom.agenziaentrate.gov.it/CitizenArCom/" rel="noopener noreferrer">archivio comuni dell’Agenzia delle Entrate</a> il codice giusto sta nella colonna “Codice Nazionale”. La colonna “Codice Catastale” contiene un altro codice (per Roma <code>M1AA</code>) e produrrebbe codici fiscali sbagliati.</p>
+
+  <h2>Come si calcola il carattere di controllo?</h2>
+  <p>Il sedicesimo carattere è una lettera da A a Z. Si ottiene sommando i valori dei primi 15 caratteri, con una tabella per le posizioni dispari e una per le pari, e convertendo in lettera il resto della divisione per 26.</p>
+  <ol>
+    <li>Converti ogni carattere in un numero. Nelle posizioni pari una cifra vale se stessa e una lettera vale la sua posizione nell’alfabeto partendo da A = 0. Nelle posizioni dispari usa la tabella sotto.</li>
+    <li>Somma tutti i valori.</li>
+    <li>Dividi la somma per 26 e tieni il resto.</li>
+    <li>Trasforma il resto in lettera: 0 è A, 1 è B, e così via fino a 25, che è Z.</li>
+  </ol>
+  <h3>Valori delle posizioni dispari (1, 3, 5, ... 15)</h3>
+  <ul>
+    <li>Cifre da 0 a 9: 1, 0, 5, 7, 9, 13, 15, 17, 19, 21.</li>
+    <li>Lettere da A a J: gli stessi valori delle cifre da 0 a 9, nello stesso ordine.</li>
+    <li>Lettere da K a Z: 2, 4, 18, 20, 11, 3, 6, 8, 12, 14, 16, 10, 22, 25, 24, 23.</li>
+  </ul>
+  <h3>Esempio svolto: RSSMRA85T10H501</h3>
+  <ul>
+    <li>Posizioni dispari: R = 8, S = 12, R = 8, 8 = 19, T = 14, 0 = 1, 5 = 13, 1 = 0. Somma 75.</li>
+    <li>Posizioni pari: S = 18, M = 12, A = 0, 5 = 5, 1 = 1, H = 7, 0 = 0. Somma 43.</li>
+    <li>Totale 118. 118 diviso 26 dà 4 con resto 14. Il valore 14 corrisponde alla lettera O.</li>
+  </ul>
+  <p>Il codice completo è quindi <code>RSSMRA85T10H501O</code>. Due esempi ulteriori calcolati con il nostro strumento: Giulia Bianchi, nata a Milano il 29 febbraio 2000, dà <code>BNCGLI00B69F205J</code>; Anna Maria D’Angelo, nata negli Stati Uniti il 3 luglio 1992, dà <code>DNGNMR92L43Z404I</code>. Sono persone d’esempio.</p>
+
+  <h2>Come si trattano accenti, apostrofi, spazi e cognomi composti?</h2>
+  <p>Si usano solo le lettere dell’alfabeto: accenti, apostrofi, spazi e trattini vengono ignorati e le lettere accentate valgono come la lettera base. Fanno eccezione i caratteri della tabella di traslitterazione del Ministero dell’Interno, richiamata dalla circolare 34/2011 dell’Agenzia delle Entrate: ä e æ valgono AE, ö e œ valgono OE, ü vale UE, ß vale SS. Consonanti e vocali si contano sull’intero cognome o nome. D’Angelo dà <code>DNG</code>, De Luca dà <code>DLC</code>, Nuñez dà <code>NNZ</code>.</p>
+  <p>Per le donne sposate si usa il cognome di nascita, non quello del coniuge. Se sui documenti nome o cognome sono trascritti in modo diverso dall’atto di nascita, il codice ufficiale può differire da quello calcolato.</p>
+
+  <h2>Cos’è l’omocodia e cambia il calcolo?</h2>
+  <p>L’omocodia si verifica quando due persone avrebbero lo stesso codice fiscale. In quel caso l’Agenzia delle Entrate assegna un codice in cui una o più cifre sono sostituite da lettere, e la lettera di controllo viene ricalcolata. Il calcolo base non la produce: si conosce solo guardando la propria tessera sanitaria.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Cifra</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead>
+    <tbody><tr><td>Lettera</td><td><code>L</code></td><td><code>M</code></td><td><code>N</code></td><td><code>P</code></td><td><code>Q</code></td><td><code>R</code></td><td><code>S</code></td><td><code>T</code></td><td><code>U</code></td><td><code>V</code></td></tr></tbody></table></div>
+  <p>La sostituzione può riguardare le sette cifre nelle posizioni 7, 8, 10, 11, 13, 14 e 15. Il nostro <a href="/it/codice-fiscale-inverso/">strumento di decodifica</a> riconosce tutte le 128 combinazioni possibili e non le considera errori. <a href="https://www.money.it/codice-fiscale-a-cosa-serve-come-ottenere" rel="noopener noreferrer">Money.it</a> conferma che solo l’Agenzia delle Entrate può assegnare il codice modificato.</p>
+
+  <h2>Il codice calcolato coincide sempre con quello ufficiale?</h2>
+  <p>No. Il risultato può differire nei casi di omocodia, nomi trascritti in modo diverso dai documenti, nascita all’estero o dati anagrafici corretti in seguito. L’unico codice valido è quello rilasciato dall’Agenzia delle Entrate: confrontalo con la tessera sanitaria o usa il <a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">servizio di verifica dell’Agenzia</a>. Il nostro <a href="/it/verifica-codice-fiscale/">controllo formale</a> verifica la struttura e la lettera di controllo.</p>
+
+  <h2>Come verifichiamo che il nostro calcolo sia corretto?</h2>
+  <p>Il motore di calcolo è coperto da test automatici e confrontato con una libreria open source di riferimento. Abbiamo controllato i codici di 7.886 comuni dell’elenco senza trovare differenze, e abbiamo ricalcolato a mano la lettera di controllo dell’esempio sopra con un programma indipendente.</p>
+  <p>I limiti sono due. L’elenco dei luoghi deriva da un’esportazione dell’Agenzia delle Entrate con i comuni e gli Stati attuali, aggiornata al 2026, quindi non include i comuni soppressi. Inoltre il calcolo non può sapere se una persona ha ricevuto un codice omocodico.</p>
+
+  <h2>Fonti e strumenti</h2>
+  <ul>
+    <li><a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a>: algoritmo e riferimento al decreto del 23 dicembre 1976.</li>
+    <li><a href="https://www.money.it/codice-fiscale-a-cosa-serve-come-ottenere" rel="noopener noreferrer">Money.it</a>: struttura del codice e omocodia.</li>
+    <li><a href="https://arcom.agenziaentrate.gov.it/CitizenArCom/" rel="noopener noreferrer">Archivio comuni e Stati esteri dell’Agenzia delle Entrate</a>.</li>
+    <li><a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">Verifica del codice fiscale dell’Agenzia delle Entrate</a>.</li>
+  </ul>
+</Guide>

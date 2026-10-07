@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Decoder from '../../components/Decoder.tsx';
+import { ui } from '../../i18n/ui';
+import { localeMeta } from '../../i18n/config';
+---
+<Base title="Codice Fiscale Inverso: Decodifica Online | Codice Fiscale Pro" description="Codice fiscale inverso: ricava data e luogo di nascita, sesso e omocodia da un codice fiscale. Nel browser, senza inviare dati." path="/it/codice-fiscale-inverso/">
+  <section class="mx-auto max-w-page px-6 pb-8 pt-16">
+    <p class="eyebrow">Decodifica</p>
+    <h1 class="display mt-3 text-4xl text-ink md:text-5xl">Codice Fiscale Inverso: Decodifica Online</h1>
+    <p class="mt-4 max-w-2xl">Inserisci un codice fiscale per leggere i dati che contiene: sesso, data di nascita, luogo di nascita e omocodia. Il calcolo avviene nel tuo browser.</p>
+  </section>
+  <section class="mx-auto max-w-3xl px-6"><Decoder client:load mode="inverse" t={ui.it.dec} locale="it" intl={localeMeta.it.intl} /></section>
+  <section class="mx-auto mt-12 max-w-3xl px-6">
+    <h2 class="h-lg text-2xl text-ink">Cosa non si può ricavare</h2>
+    <p class="mt-3">Il codice fiscale inverso non restituisce nome e cognome. Le prime sei lettere derivano da consonanti e vocali di cognome e nome secondo un algoritmo, e persone diverse possono ottenere le stesse sei lettere. Il codice contiene anche solo le ultime due cifre dell’anno di nascita, quindi il secolo resta incerto quando due anni sono possibili.</p>
+    <h2 class="h-lg mt-8 text-2xl text-ink">Decodifica e verifica ufficiale</h2>
+    <p class="mt-3">Questa pagina legge la struttura del codice. Non interroga l’Agenzia delle Entrate e non dice se il codice è stato assegnato a una persona. Per questo c’è il <a class="text-link underline" href="/it/verifica-codice-fiscale/">controllo formale</a> e, per una conferma ufficiale, il servizio dell’Agenzia. Per generare un codice, usa il <a class="text-link underline" href="/it/">calcolo del codice fiscale</a>.</p>
+  </section>
+</Base>

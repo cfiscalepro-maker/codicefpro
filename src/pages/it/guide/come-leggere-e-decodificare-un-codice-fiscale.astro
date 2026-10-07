@@ -1,0 +1,60 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Come capisco se un codice fiscale è di un uomo o di una donna?', a: 'Guarda le posizioni 10 e 11. Se il numero è compreso tra 01 e 31 la persona è di sesso maschile, se è tra 41 e 71 è di sesso femminile, e il giorno di nascita è il numero meno 40.' },
+  { q: 'Quale lettera indica il mese di nascita?', a: 'La nona posizione usa A per gennaio, B febbraio, C marzo, D aprile, E maggio, H giugno, L luglio, M agosto, P settembre, R ottobre, S novembre, T dicembre.' },
+  { q: 'Perché nel codice ci sono lettere al posto di alcune cifre?', a: 'Sono segno di omocodia. Una o più delle sette cifre dopo le prime sei lettere sono sostituite da lettere tra L, M, N, P, Q, R, S, T, U, V, che corrispondono alle cifre da 0 a 9.' },
+  { q: 'Posso risalire all’anno di nascita completo?', a: 'Il codice contiene solo le ultime due cifre. Se l’anno è 85, la persona può essere nata nel 1985 o nel 1885; nella pratica si valuta quale data è plausibile.' },
+];
+---
+<Guide
+  title="Come leggere e decodificare un codice fiscale | Codice Fiscale Pro"
+  h1="Come leggere e decodificare un codice fiscale"
+  description="Come leggere un codice fiscale: cosa significano le 16 posizioni, come ricavare data, sesso e luogo di nascita e cosa resta non determinabile."
+  path="/it/guide/come-leggere-e-decodificare-un-codice-fiscale/"
+  summary="Per leggere un codice fiscale si dividono i 16 caratteri in gruppi: le posizioni 1-6 derivano da cognome e nome, 7-8 sono l’anno, 9 il mese, 10-11 giorno e sesso (più 40 per le donne), 12-15 il luogo di nascita e 16 il controllo. Dal codice RSSMRA85T10H501O si ricava: uomo, nato il 10 dicembre 1985 a Roma (H501)."
+  audience="chi ha un codice fiscale davanti e vuole capire cosa dice: dipendenti che controllano una busta paga, studenti, chi inserisce dati in un modulo, sviluppatori. Per decodificare in automatico usa lo strumento di codice fiscale inverso."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['cos-e-il-codice-fiscale-inverso', 'cos-e-l-omocodia', 'codice-belfiore', 'come-si-calcola-il-codice-fiscale']}
+>
+  <h2>Come si legge un codice fiscale carattere per carattere?</h2>
+  <p>Si legge a gruppi, sempre nello stesso ordine. Prendiamo <code>RSSMRA85T10H501O</code>.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Posizioni</th><th>Gruppo</th><th>Cosa dice</th></tr></thead>
+    <tbody>
+      <tr><td>1-3</td><td><code>RSS</code></td><td>Lettere ricavate dal cognome</td></tr>
+      <tr><td>4-6</td><td><code>MRA</code></td><td>Lettere ricavate dal nome</td></tr>
+      <tr><td>7-8</td><td><code>85</code></td><td>Anno di nascita: 85</td></tr>
+      <tr><td>9</td><td><code>T</code></td><td>Mese: dicembre</td></tr>
+      <tr><td>10-11</td><td><code>10</code></td><td>Giorno 10, sesso maschile</td></tr>
+      <tr><td>12-15</td><td><code>H501</code></td><td>Luogo di nascita: Roma</td></tr>
+      <tr><td>16</td><td><code>O</code></td><td>Lettera di controllo</td></tr>
+    </tbody></table></div>
+
+  <h2>Come si ricavano data di nascita e sesso?</h2>
+  <p>Si usano le posizioni da 7 a 11. Le prime due cifre sono l’anno, la lettera è il mese, le ultime due cifre sono il giorno. Se il numero del giorno supera 40 si tratta di una donna e il giorno vero si ottiene sottraendo 40. Esempio: <code>92L43</code> significa 1992, luglio, giorno 43 meno 40 uguale 3, sesso femminile.</p>
+
+  <h2>Come si ricava il luogo di nascita?</h2>
+  <p>Le posizioni da 12 a 15 contengono il codice Belfiore. Una lettera seguita da tre cifre indica un comune italiano, per esempio <code>F205</code> per Milano. Se inizia con Z indica uno Stato estero, per esempio <code>Z404</code> per gli Stati Uniti d’America. Cerca il codice nell’elenco con il nostro <a href="/it/codice-fiscale-inverso/">strumento di decodifica</a> o leggi la guida sul <a href="/it/guide/codice-belfiore/">codice Belfiore</a>.</p>
+
+  <h2>Cosa si può ricavare dalle prime sei lettere?</h2>
+  <p>Sono consonanti e vocali scelte con una regola fissa, quindi più cognomi o nomi diversi portano alle stesse lettere. <code>RSS</code> vale per Rossi, Rosso e Ross. <code>MRA</code> vale per Mario, Mauro e Maria. Dalle sei lettere si possono formulare ipotesi, ma non si ricava il nome o il cognome della persona.</p>
+
+  <h2>Come si riconosce un codice con omocodia?</h2>
+  <p>In un codice senza omocodia le posizioni 7, 8, 10, 11, 13, 14 e 15 sono cifre. Se una di queste contiene una lettera tra L, M, N, P, Q, R, S, T, U, V, il codice è una variante omocodica. Il valore originale si ottiene con la corrispondenza L = 0, M = 1, N = 2, P = 3, Q = 4, R = 5, S = 6, T = 7, U = 8, V = 9. Vedi la guida <a href="/it/guide/cos-e-l-omocodia/">cos’è l’omocodia</a>.</p>
+
+  <h2>Cosa non si può ricavare da un codice fiscale?</h2>
+  <p>Non si ricavano il nome e il cognome completi, il secolo di nascita e l’effettiva assegnazione del codice a una persona.</p>
+  <ul>
+    <li>Il nome e il cognome completi.</li>
+    <li>Il secolo di nascita, perché il codice contiene solo due cifre dell’anno.</li>
+    <li>Se il codice è stato davvero assegnato a una persona: serve la <a href="/it/guide/verifica-formale-e-verifica-ufficiale/">verifica ufficiale</a>.</li>
+  </ul>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a>: struttura dei 16 caratteri.</li>
+    <li><a href="https://www.money.it/codice-fiscale-a-cosa-serve-come-ottenere" rel="noopener noreferrer">Money.it</a>: lettura del codice e omocodia.</li>
+  </ul>
+</Guide>

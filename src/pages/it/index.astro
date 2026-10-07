@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Calculator from '../../components/Calculator.tsx';
+import Globe from '../../components/Globe.astro';
+import { ui } from '../../i18n/ui';
+import HomeSections from '../../components/HomeSections.astro';
+import { homeFaq } from '../../content/home';
+---
+<Base title="Calcolo Codice Fiscale Online | Codice Fiscale Pro" description="Calcolo codice fiscale gratuito, nel tuo browser: nessun dato inviato. Include nati all'estero e omocodia. Servizio indipendente." path="/it/" faq={homeFaq.it}>
+  <div class="relative isolate overflow-hidden">
+  <Globe />
+  <section class="mx-auto max-w-page px-6 pb-8 pt-16">
+    <p class="eyebrow">Gratuito · Nessuna registrazione</p>
+    <h1 class="display mt-3 text-4xl md:text-5xl text-ink">Calcolo Codice Fiscale Online</h1>
+    <p class="mt-4 max-w-2xl text-base">Inserisci i dati anagrafici e ottieni il codice fiscale. Il calcolo avviene nel tuo browser: nome, data di nascita e luogo non vengono inviati a nessun server.</p>
+  </section>
+  <section class="mx-auto max-w-3xl px-6" aria-label="Calcolatore">
+    <Calculator client:load t={ui.it.calc} locale="it" omoHref="/it/guide/cos-e-l-omocodia/" />
+    <p class="mt-4 text-sm">Altri strumenti: <a class="text-link underline" href="/it/codice-fiscale-inverso/">codice fiscale inverso</a> e <a class="text-link underline" href="/it/verifica-codice-fiscale/">verifica codice fiscale</a>. Vuoi capire le regole? Leggi <a class="text-link underline" href="/it/guide/come-si-calcola-il-codice-fiscale/">come si calcola il codice fiscale</a>.</p>
+  </section>
+  </div>
+  <HomeSections locale="it" />
+</Base>

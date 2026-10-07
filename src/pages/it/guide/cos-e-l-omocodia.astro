@@ -1,0 +1,64 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Cos’è l’omocodia in parole semplici?', a: 'È il caso in cui due persone avrebbero lo stesso codice fiscale perché hanno dati identici. L’Agenzia delle Entrate assegna a una o a entrambe un codice in cui alcune cifre sono sostituite da lettere.' },
+  { q: 'Un codice con lettere al posto di cifre è sbagliato?', a: 'No. Se le lettere sono tra L, M, N, P, Q, R, S, T, U, V nelle posizioni 7, 8, 10, 11, 13, 14 o 15, può essere una variante omocodica valida.' },
+  { q: 'Posso sapere se ho un codice omocodico calcolandolo?', a: 'No. Il calcolo dà il codice di base. Per sapere quale codice ti è stato assegnato devi guardare la tessera sanitaria o i documenti dell’Agenzia delle Entrate.' },
+  { q: 'Cosa devo fare se ho un codice omocodico?', a: 'Usa il codice che ti ha comunicato l’Agenzia delle Entrate, perché è l’unico valido. Se hai dubbi su quale usare, chiedi conferma a un ufficio dell’Agenzia.' },
+];
+---
+<Guide
+  title="Cos’è l’omocodia nel codice fiscale | Codice Fiscale Pro"
+  h1="Cos’è l’omocodia nel codice fiscale"
+  description="Omocodia: perché due persone possono avere lo stesso codice fiscale, come si sostituiscono le cifre con lettere e come riconoscere un codice omocodico."
+  path="/it/guide/cos-e-l-omocodia/"
+  summary="L’omocodia è la coincidenza di due codici fiscali identici calcolati per persone diverse. L’Agenzia delle Entrate la risolve assegnando un codice in cui una o più delle 7 cifre ammesse sono sostituite da lettere (0=L, 1=M, 2=N, 3=P, 4=Q, 5=R, 6=S, 7=T, 8=U, 9=V), partendo da destra, e ricalcolando la lettera di controllo."
+  audience="chi ha un codice con lettere in posizioni dove ci si aspetta cifre, chi sviluppa software che valida codici fiscali, e chi vuole capire perché il proprio calcolo non coincide con la tessera sanitaria."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['come-leggere-e-decodificare-un-codice-fiscale', 'quando-puo-cambiare-il-codice-fiscale', 'errori-comuni-nel-codice-fiscale', 'verifica-formale-e-verifica-ufficiale']}
+>
+  <h2>Cos’è l’omocodia?</h2>
+  <p>L’omocodia è la situazione in cui il calcolo darebbe lo stesso codice fiscale a due o più persone, perché cognome, nome, data e luogo di nascita producono gli stessi caratteri. Il codice fiscale non basta da solo a distinguere ogni individuo, come ricordano <a href="https://www.money.it/codice-fiscale-a-cosa-serve-come-ottenere" rel="noopener noreferrer">Money.it</a> e <a href="https://www.businessonline.it/news/ho-scoperto-che-esiste-un-altro-me-nellanagrafe-nazionale-stesso-nome-stesso-codice-fiscale-stesso-problema_n84750.html" rel="noopener noreferrer">Business Online</a>.</p>
+
+  <h2>Come si risolve l’omocodia?</h2>
+  <p>L’Agenzia delle Entrate sostituisce una o più cifre del codice con lettere, a partire dalla cifra più a destra, finché il codice diventa unico. Poi ricalcola la lettera di controllo. Lo indicano <a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a> e <a href="https://fiscomania.com/omocodia" rel="noopener noreferrer">Fiscomania</a>. Secondo <a href="https://www.informazionefiscale.it/codice-fiscale-verifica-dati-agenzia-delle-entrate" rel="noopener noreferrer">Informazione Fiscale</a>, l’Agenzia genera nuovi codici univoci e può convocare le persone interessate per sistemare i dati in anagrafe tributaria.</p>
+
+  <p>Per i cittadini stranieri la procedura è descritta nella <a href="https://www.agenziaentrate.gov.it/portale/mini-guida-codice-fiscale-per-stranieri" rel="noopener noreferrer">brochure «Codice fiscale stranieri» dell’Agenzia delle Entrate</a>: se due o più persone hanno dati che generano lo stesso codice, lo Sportello unico per l’Immigrazione o la Questura invitano la persona a recarsi in un ufficio dell’Agenzia, che dopo una verifica rilascia il codice definitivo. Nel frattempo vale un codice provvisorio.</p>
+
+  <h2>Quali cifre vengono sostituite e con quali lettere?</h2>
+  <p>La sostituzione riguarda le sette cifre nelle posizioni 7, 8, 10, 11, 13, 14 e 15. Ogni cifra ha una lettera corrispondente.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Cifra</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead>
+    <tbody><tr><td>Lettera</td><td><code>L</code></td><td><code>M</code></td><td><code>N</code></td><td><code>P</code></td><td><code>Q</code></td><td><code>R</code></td><td><code>S</code></td><td><code>T</code></td><td><code>U</code></td><td><code>V</code></td></tr></tbody></table></div>
+
+  <h2>Come cambia un codice fiscale con omocodia? Un esempio</h2>
+  <p>Partiamo dal codice d’esempio <code>RSSMRA85T10H501O</code>. Le sostituzioni procedono dalla posizione 15 verso sinistra, e a ogni passaggio la lettera finale viene ricalcolata.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Passaggio</th><th>Codice</th><th>Cifra sostituita</th></tr></thead>
+    <tbody>
+      <tr><td>0 (base)</td><td><code>RSSMRA85T10H501O</code></td><td>nessuna</td></tr>
+      <tr><td>1</td><td><code>RSSMRA85T10H50MG</code></td><td>posizione 15: 1 diventa M</td></tr>
+      <tr><td>2</td><td><code>RSSMRA85T10H5LMR</code></td><td>posizione 14: 0 diventa L</td></tr>
+      <tr><td>3</td><td><code>RSSMRA85T10HRLMM</code></td><td>posizione 13: 5 diventa R</td></tr>
+      <tr><td>4</td><td><code>RSSMRA85T1LHRLMP</code></td><td>posizione 11: 0 diventa L</td></tr>
+      <tr><td>5</td><td><code>RSSMRA85TMLHRLMA</code></td><td>posizione 10: 1 diventa M</td></tr>
+      <tr><td>6</td><td><code>RSSMRA8RTMLHRLMM</code></td><td>posizione 8: 5 diventa R</td></tr>
+      <tr><td>7</td><td><code>RSSMRAURTMLHRLMJ</code></td><td>posizione 7: 8 diventa U</td></tr>
+    </tbody></table></div>
+  <p>Sono codici costruiti a scopo di esempio, calcolati con il nostro motore.</p>
+
+  <h2>Come si riconosce un codice omocodico?</h2>
+  <p>Basta cercare lettere nelle sette posizioni che di norma contengono cifre. Il nostro <a href="/it/codice-fiscale-inverso/">strumento di decodifica</a> riconosce queste lettere, ricostruisce le cifre originali e ricalcola la lettera di controllo. Accetta tutte le 128 combinazioni possibili di sostituzione, anche se i codici assegnati seguono l’ordine da destra a sinistra descritto sopra.</p>
+
+  <h2>Posso calcolare da solo il mio codice omocodico?</h2>
+  <p>No. Un calcolo online non può sapere se il tuo codice è stato modificato, perché non ha accesso all’anagrafe tributaria. Può mostrarti il codice di base. Per il codice in uso, guarda la tessera sanitaria o chiedi all’<a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">Agenzia delle Entrate</a>.</p>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a> e <a href="https://fiscomania.com/omocodia" rel="noopener noreferrer">Fiscomania</a>: regola di sostituzione da destra.</li>
+    <li><a href="https://www.informazionefiscale.it/codice-fiscale-verifica-dati-agenzia-delle-entrate" rel="noopener noreferrer">Informazione Fiscale</a>: risoluzione da parte dell’Agenzia.</li>
+    <li><a href="https://www.money.it/codice-fiscale-a-cosa-serve-come-ottenere" rel="noopener noreferrer">Money.it</a>: definizione di omocodia.</li>
+    <li><a href="https://www.agenziaentrate.gov.it/portale/mini-guida-codice-fiscale-per-stranieri" rel="noopener noreferrer">Agenzia delle Entrate</a>: brochure «Codice fiscale stranieri», procedura in caso di dati coincidenti.</li>
+  </ul>
+</Guide>

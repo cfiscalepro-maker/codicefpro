@@ -1,0 +1,57 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Qual è l’errore più frequente nel calcolo a mano?', a: 'Dimenticare di aggiungere 40 al giorno di nascita per le donne, oppure usare nome e cognome scambiati. Sono errori che si riconoscono subito rileggendo i due gruppi di tre lettere.' },
+  { q: 'Perché il mio codice calcolato non coincide con la tessera?', a: 'Le cause più comuni sono una grafia diversa del nome sui documenti, il luogo di nascita sbagliato, l’uso del cognome del coniuge o un codice omocodico assegnato dall’Agenzia.' },
+  { q: 'Quali lettere non sono usate per i mesi?', a: 'Non compaiono F, G, I, N, O, Q, U, V, W, X, Y e Z. I mesi usano solo A, B, C, D, E, H, L, M, P, R, S, T.' },
+  { q: 'Come controllo un codice dopo averlo calcolato?', a: 'Usa la verifica formale per individuare errori di struttura e confronta il codice con la tessera sanitaria. Per un controllo ufficiale serve il servizio dell’Agenzia delle Entrate.' },
+];
+---
+<Guide
+  title="Errori comuni nel codice fiscale e come evitarli | Codice Fiscale Pro"
+  h1="Errori comuni nel codice fiscale e come evitarli"
+  description="Gli errori più frequenti nel calcolo e nell’inserimento del codice fiscale: sesso, mese, luogo, cognome, omocodia. Con tabella degli errori e dei controlli."
+  path="/it/guide/errori-comuni-nel-codice-fiscale/"
+  summary="Gli errori più frequenti sono: dimenticare il +40 sul giorno per le donne, scambiare nome e cognome, usare un codice di luogo sbagliato (per esempio la colonna sbagliata dell’elenco o il comune con lo stesso nome in un’altra provincia), confondere la lettera O con lo zero e non considerare l’omocodia. Un controllo formale individua i primi quattro."
+  audience="chi calcola il codice fiscale a mano, chi lo copia da un documento a un modulo e chi sviluppa software che lo genera. Per ogni errore la guida indica come riconoscerlo e come correggerlo."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['come-si-calcola-il-codice-fiscale', 'codice-belfiore', 'verifica-formale-e-verifica-ufficiale', 'cos-e-l-omocodia']}
+>
+  <h2>Quali sono gli errori più comuni nel calcolo del codice fiscale?</h2>
+  <p>La tabella raccoglie i dieci errori più frequenti, con il modo per riconoscerli. Gli esempi usano il codice d’esempio <code>RSSMRA85T10H501O</code>.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Errore</th><th>Come si riconosce</th><th>Come evitarlo</th></tr></thead>
+    <tbody>
+      <tr><td>Nome e cognome scambiati</td><td><code>MRA</code> compare prima di <code>RSS</code></td><td>Le prime tre lettere sono il cognome, le successive il nome</td></tr>
+      <tr><td>Giorno senza +40 per le donne</td><td>Giorno tra 01 e 31 per una donna</td><td>Per le donne somma 40: il giorno 5 diventa 45</td></tr>
+      <tr><td>Lettera del mese sbagliata</td><td>Lettere come F, G, I, N, O, Q nella posizione 9</td><td>Usa solo A, B, C, D, E, H, L, M, P, R, S, T</td></tr>
+      <tr><td>Luogo di residenza al posto del luogo di nascita</td><td>Codice diverso da quello del comune di nascita</td><td>Usa sempre il luogo di nascita</td></tr>
+      <tr><td>Colonna sbagliata nell’elenco dei comuni</td><td>Codice come <code>M1AA</code> invece di <code>H501</code></td><td>Usa il “Codice Nazionale”, non il “Codice Catastale”</td></tr>
+      <tr><td>Comune omonimo di un’altra provincia</td><td>Castro: <code>C337</code> (BG) o <code>M261</code> (LE)</td><td>Scegli anche la provincia</td></tr>
+      <tr><td>Cognome del coniuge</td><td>Codice diverso da quello sulla tessera</td><td>Usa il cognome di nascita</td></tr>
+      <tr><td>Apostrofi e spazi contati come lettere</td><td>D’Angelo che non dà <code>DNG</code></td><td>Ignora apostrofi, spazi e accenti</td></tr>
+      <tr><td>O al posto di 0 (o viceversa)</td><td>Lettera di controllo O contro cifra 0 nei campi numerici</td><td>La lettera di controllo è una lettera, sempre</td></tr>
+      <tr><td>Omocodia non considerata</td><td>Lettere nelle posizioni normalmente numeriche</td><td>Guarda la tessera e leggi <a href="/it/guide/cos-e-l-omocodia/">cos’è l’omocodia</a></td></tr>
+    </tbody></table></div>
+
+  <h2>Perché il codice calcolato è diverso da quello sulla tessera sanitaria?</h2>
+  <p>I motivi più frequenti sono la grafia dei dati e l’omocodia. <a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a> segnala spazi, apostrofi, nomi doppi, caratteri speciali e nascita all’estero tra le cause di differenza. Se il tuo codice sulla tessera ha lettere dove ci sono cifre, è una variante omocodica.</p>
+
+  <h2>Come si controlla un codice dopo il calcolo?</h2>
+  <p>Si controlla in tre passaggi, dal più rapido al più sicuro.</p>
+  <ol>
+    <li>Passa il codice nella <a href="/it/verifica-codice-fiscale/">verifica codice fiscale</a>: individua struttura, data e lettera di controllo sbagliate.</li>
+    <li>Leggi il codice con il <a href="/it/codice-fiscale-inverso/">codice fiscale inverso</a>: controlla che sesso, data e luogo siano quelli attesi.</li>
+    <li>Confronta con la tessera sanitaria o con il <a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">servizio dell’Agenzia delle Entrate</a>.</li>
+  </ol>
+
+  <h2>Quali errori individua un controllo formale e quali no?</h2>
+  <p>Individua i codici con struttura sbagliata, mese o giorno impossibili e lettera di controllo errata. Non individua un luogo sbagliato ma plausibile, un nome scritto diversamente o un codice che nessuno possiede. Per questi serve il confronto con documenti ufficiali. Vedi <a href="/it/guide/verifica-formale-e-verifica-ufficiale/">verifica formale e ufficiale</a>.</p>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a>: errori e varianti nei dati.</li>
+    <li><a href="https://arcom.agenziaentrate.gov.it/CitizenArCom/" rel="noopener noreferrer">Agenzia delle Entrate</a>: elenco comuni e Stati.</li>
+  </ul>
+</Guide>

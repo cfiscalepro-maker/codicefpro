@@ -1,0 +1,67 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+const faq = [
+  { q: 'Come si calcola il codice fiscale se sono nato all’estero?', a: 'Si calcola come per i nati in Italia, ma al posto del codice del comune si usa il codice dello Stato di nascita, che inizia con la lettera Z. Per la Romania, per esempio, è Z129.' },
+  { q: 'Un cittadino straniero può avere il codice fiscale?', a: 'Sì. I cittadini UE possono chiederlo con il modello AA4/8 a un ufficio dell’Agenzia delle Entrate. Per i cittadini extra UE lo attribuisce lo Sportello unico per l’Immigrazione (prima in forma provvisoria, numerica) o la Questura, a seconda del permesso richiesto. Chi soggiorna regolarmente senza codice può chiederlo a un qualsiasi ufficio dell’Agenzia.' },
+  { q: 'Come si scrive il nome se ha caratteri non latini o accenti?', a: 'Si usa la grafia riportata sul documento, come il passaporto. Gli accenti valgono come la lettera base, mentre apostrofi, spazi e trattini vengono ignorati.' },
+  { q: 'Cosa faccio se lo Stato di nascita non è nell’elenco?', a: 'L’elenco comprende gli Stati attuali. Per Stati che non esistono più o che hanno cambiato denominazione, controlla con l’Agenzia delle Entrate quale codice sia stato usato.' },
+];
+---
+<Guide
+  title="Codice fiscale per stranieri e nati all’estero | Codice Fiscale Pro"
+  h1="Codice fiscale per cittadini stranieri e nati all’estero"
+  description="Come funziona il codice fiscale per chi è nato all’estero: codice Z dello Stato, grafia dei nomi, richiesta all’Agenzia delle Entrate e limiti del calcolo."
+  path="/it/guide/codice-fiscale-per-cittadini-stranieri/"
+  summary="Chi è nato all’estero ha un codice fiscale con lo stesso schema degli altri, ma nelle posizioni 12-15 compare il codice dello Stato di nascita, che inizia sempre con Z (per esempio Z129 per la Romania). Il codice vale sia per cittadini stranieri sia per cittadini italiani nati fuori dall’Italia. Chi non lo possiede può chiederlo all’Agenzia delle Entrate con il modello AA4/8."
+  audience="cittadini stranieri che vivono o lavorano in Italia, cittadini italiani nati all’estero e chi li assiste (datori di lavoro, patronati, familiari). Non riguarda il codice fiscale di aziende ed enti."
+  datePublished="2026-10-04"
+  faq={faq}
+  related={['codice-belfiore', 'come-si-calcola-il-codice-fiscale', 'come-trovare-il-proprio-codice-fiscale', 'errori-comuni-nel-codice-fiscale']}
+>
+  <h2>Come funziona il codice fiscale per chi è nato all’estero?</h2>
+  <p>Lo schema è identico: cognome, nome, anno, mese, giorno e sesso, luogo, lettera di controllo. L’unica differenza è il luogo, che usa il codice dello Stato di nascita in una forma lettera più tre cifre con la Z iniziale. Esempio: Anna Maria D’Angelo, nata negli Stati Uniti il 3 luglio 1992, ha il codice <code>DNGNMR92L43Z404I</code> (persona d’esempio).</p>
+
+  <h2>Quali sono i codici di alcuni Stati?</h2>
+  <p>Questi codici provengono dall’elenco dell’Agenzia delle Entrate incluso nel nostro sito.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Stato</th><th>Codice</th><th>Stato</th><th>Codice</th></tr></thead>
+    <tbody>
+      <tr><td>Albania</td><td><code>Z100</code></td><td>Marocco</td><td><code>Z330</code></td></tr>
+      <tr><td>Romania</td><td><code>Z129</code></td><td>Egitto</td><td><code>Z336</code></td></tr>
+      <tr><td>Ucraina</td><td><code>Z138</code></td><td>Nigeria</td><td><code>Z335</code></td></tr>
+      <tr><td>India</td><td><code>Z222</code></td><td>Brasile</td><td><code>Z602</code></td></tr>
+      <tr><td>Svizzera</td><td><code>Z133</code></td><td>Stati Uniti d’America</td><td><code>Z404</code></td></tr>
+    </tbody></table></div>
+
+  <h2>Come si ottiene il codice fiscale se si è stranieri?</h2>
+  <p>Dipende dalla situazione, come descrive la <a href="https://www.agenziaentrate.gov.it/portale/mini-guida-codice-fiscale-per-stranieri" rel="noopener noreferrer">brochure «Codice fiscale stranieri» dell’Agenzia delle Entrate</a> (edizione 2023).</p>
+  <ul>
+    <li><strong>Cittadini extra UE che arrivano in Italia:</strong> il codice è attribuito dallo Sportello unico per l’Immigrazione, presente in ogni Prefettura, a chi chiede il permesso per lavoro dipendente o ricongiungimento familiare, e dalla Questura per gli altri permessi. Lo Sportello unico assegna prima un codice numerico provvisorio, e al rilascio del permesso arriva quello definitivo, di lettere e numeri. Con la Questura il codice definitivo arriva subito.</li>
+    <li><strong>Protezione internazionale:</strong> il codice è attribuito dalla Questura o dalla Polizia di frontiera al momento della richiesta.</li>
+    <li><strong>Minori stranieri non regolari o non accompagnati:</strong> lo attribuisce l’Agenzia delle Entrate su richiesta dell’ASL che deve iscrivere il minore al Servizio sanitario nazionale.</li>
+    <li><strong>Profughi ucraini:</strong> la Questura rilascia il codice definitivo quando si presenta la richiesta del permesso temporaneo.</li>
+    <li><strong>Cittadini UE:</strong> presentano il modello AA4/8 a un ufficio territoriale dell’Agenzia, con passaporto o carta d’identità valida per l’espatrio. Possono chiederlo anche al consolato italiano del Paese di provenienza.</li>
+    <li><strong>Chi soggiorna regolarmente in Italia senza codice:</strong> può chiederlo a un qualsiasi ufficio dell’Agenzia con il modello AA4/8 compilato e firmato e un documento valido. La richiesta deve essere motivata.</li>
+  </ul>
+  <p>I documenti accettati per la richiesta sono: permesso di soggiorno valido, passaporto valido con visto quando previsto, attestazione di identità rilasciata dalla rappresentanza diplomatica o consolare in Italia del Paese di appartenenza, oppure carta d’identità italiana. Per i cittadini stranieri non residenti, le <a href="https://www.esteri.it/it/servizi-consolari-e-visti/italiani-all-estero/codice_fiscale/" rel="noopener noreferrer">pagine del Ministero degli Esteri</a> indicano che si può delegare una persona a presentare la richiesta agli uffici dell’Agenzia in Italia. I cittadini italiani iscritti all’AIRE passano dal consolato.</p>
+
+  <h2>Cosa succede se due persone hanno gli stessi dati?</h2>
+  <p>Se i dati di due o più persone generano lo stesso codice, lo Sportello unico o la Questura invitano il cittadino a recarsi in un ufficio dell’Agenzia delle Entrate, che dopo una verifica rilascia il codice definitivo. In attesa si può usare il codice provvisorio, per esempio per iscriversi all’ASL e scegliere il medico. È il caso di omocodia spiegato nella guida <a href="/it/guide/cos-e-l-omocodia/">cos’è l’omocodia</a>.</p>
+
+  <h2>Dove arriva il codice e quanto vale?</h2>
+  <p>Secondo la brochure, il codice è spedito per posta ordinaria all’indirizzo di residenza per i residenti, o al domicilio fiscale indicato nella richiesta per i non residenti. Vale solo il codice rilasciato e certificato dall’Agenzia delle Entrate, e non ha scadenza. I cittadini UE usano il Servizio sanitario nazionale con la tessera europea di assicurazione malattia del loro Paese di residenza.</p>
+
+  <h2>Il calcolo online coincide con il codice ufficiale?</h2>
+  <p>Per chi è nato all’estero coincide meno spesso che per gli altri, perché le trascrizioni dei nomi e i nomi degli Stati possono variare. <a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a> segnala proprio la nascita all’estero tra i casi in cui il risultato può non coincidere. Usa il nostro <a href="/it/">calcolo</a> per avere una base e poi confronta il codice con la tessera sanitaria o con il <a href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">servizio dell’Agenzia</a>.</p>
+
+  <h2>Cosa fare se lo Stato di nascita non esiste più?</h2>
+  <p>Il nostro elenco comprende 249 Stati esteri attuali. Per Stati con un nome o con confini cambiati nel tempo non possiamo garantire il codice storico, quindi verifica sempre con l’Agenzia delle Entrate.</p>
+
+  <h2>Fonti</h2>
+  <ul>
+    <li><a href="https://www.agenziaentrate.gov.it/portale/mini-guida-codice-fiscale-per-stranieri" rel="noopener noreferrer">Agenzia delle Entrate</a>: brochure «Codice fiscale stranieri», edizione 2023, canali di attribuzione, documenti e provvisorio.</li>
+    <li><a href="https://www.esteri.it/it/servizi-consolari-e-visti/italiani-all-estero/codice_fiscale/" rel="noopener noreferrer">Ministero degli Esteri</a>: non residenti e AIRE.</li>
+    <li><a href="https://www.pmi.it/?p=362269" rel="noopener noreferrer">Pmi.it</a>: casi in cui il calcolo può non coincidere.</li>
+    <li><a href="https://arcom.agenziaentrate.gov.it/CitizenArCom/" rel="noopener noreferrer">Agenzia delle Entrate</a>: elenco degli Stati esteri.</li>
+  </ul>
+</Guide>

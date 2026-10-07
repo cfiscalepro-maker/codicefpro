@@ -1,0 +1,28 @@
+---
+import { pagePath, type Locale } from '../i18n/config';
+import { ui } from '../i18n/ui';
+import { guideList } from '../i18n/alternates';
+interface Props { locale: Locale; links: { locale: Locale; label: string; hreflang: string; href: string }[] }
+const { locale, links } = Astro.props;
+const f = ui[locale].footer;
+const cols = [
+  [f.tools, [[f.calcLink, pagePath(locale, 'home')], [f.inverseLink, pagePath(locale, 'inverse')], [f.verifyLink, pagePath(locale, 'verify')], ...(guideList(locale).length ? [[f.guides, pagePath(locale, 'guides')]] : [])]],
+  [f.site, [[f.about, pagePath(locale, 'about')], [f.contact, pagePath(locale, 'contact')], [f.privacy, pagePath(locale, 'privacy')], [f.terms, pagePath(locale, 'terms')]]],
+] as const;
+---
+<footer class="mt-24 border-t border-hairline bg-canvas">
+  <div class="mx-auto grid max-w-page gap-10 px-6 py-16 md:grid-cols-3">
+    <p class="text-sm">{f.disclaimer}</p>
+    {cols.map(([title, items]) => (
+      <nav aria-label={title}>
+        <h2 class="eyebrow mb-3">{title}</h2>
+        <ul class="space-y-2 text-sm">{items.map(([l, h]) => <li><a href={h} class="hover:text-ink">{l}</a></li>)}{title === f.site && <li><button type="button" data-cookie-settings class="hover:text-ink">{f.cookies}</button></li>}</ul>
+      </nav>
+    ))}
+  </div>
+  <div class="mx-auto max-w-page border-t border-hairline px-6 py-6">
+    <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+      {links.map((l) => <li><a href={l.href} hreflang={l.hreflang} lang={l.hreflang} class={l.locale === locale ? 'font-semibold text-ink' : 'hover:text-ink'}>{l.label}</a></li>)}
+    </ul>
+  </div>
+</footer>

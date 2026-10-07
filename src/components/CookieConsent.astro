@@ -1,0 +1,61 @@
+---
+import { pagePath, type Locale } from '../i18n/config';
+import { ui } from '../i18n/ui';
+const { locale } = Astro.props as { locale: Locale };
+const c = ui[locale].cookie;
+---
+<div id="cookie-banner" role="region" aria-label={c.region} hidden
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-hairline bg-elevated p-4 shadow-[0_-8px_16px_-4px_rgba(0,0,0,0.08)] sm:p-6">
+  <div class="mx-auto flex max-w-page flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <p class="max-w-3xl text-sm">
+      {c.text}
+      <a class="text-link underline" href={pagePath(locale, 'privacy')}>{c.link}</a>
+    </p>
+    <div class="flex flex-col gap-3 sm:flex-row">
+      <button id="cc-reject" type="button" class="h-12 rounded-full border border-ink bg-elevated px-6 text-base font-medium text-ink">{c.reject}</button>
+      <button id="cc-accept" type="button" class="h-12 rounded-full border border-ink bg-elevated px-6 text-base font-medium text-ink">{c.accept}</button>
+    </div>
+  </div>
+</div>
+<script>
+  import { GA_ID, CONSENT_KEY, parseConsent, serializeConsent } from '../lib/consent';
+  type W = Window & { dataLayer?: unknown[]; gtag?: (...a: unknown[]) => void; [k: string]: unknown };
+  const w = window as unknown as W;
+  const banner = document.getElementById('cookie-banner')!;
+
+  function loadGA() {
+    if (document.getElementById('ga-loader')) return;
+    w[`ga-disable-${GA_ID}`] = false;
+    w.dataLayer = w.dataLayer || [];
+    w.gtag = function () { (w.dataLayer as unknown[]).push(arguments); };
+    w.gtag('js', new Date());
+    w.gtag('config', GA_ID, { allow_google_signals: false, allow_ad_personalization_signals: false });
+    const s = document.createElement('script');
+    s.id = 'ga-loader'; s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_ID)}`;
+    document.head.appendChild(s);
+  }
+  function disableGA() {
+    w[`ga-disable-${GA_ID}`] = true;
+    const host = location.hostname, parent = '.' + host.replace(/^www\./, '');
+    document.cookie.split(';').map((c) => c.split('=')[0].trim()).filter((n) => n === '_ga' || n.startsWith('_ga_') || n === '_gid').forEach((n) => {
+      for (const d of ['', `; domain=${host}`, `; domain=${parent}`]) document.cookie = `${n}=; Max-Age=0; path=/${d}`;
+    });
+  }
+  function store(analytics: boolean) {
+    try { localStorage.setItem(CONSENT_KEY, serializeConsent(analytics)); } catch {}
+    banner.hidden = true;
+    analytics ? loadGA() : disableGA();
+  }
+  function stored() { try { return parseConsent(localStorage.getItem(CONSENT_KEY)); } catch { return null; } }
+
+  const c = stored();
+  if (c?.analytics) loadGA();
+  else if (!c) banner.hidden = false;
+
+  document.getElementById('cc-accept')!.addEventListener('click', () => store(true));
+  document.getElementById('cc-reject')!.addEventListener('click', () => store(false));
+  document.querySelectorAll('[data-cookie-settings]').forEach((el) => el.addEventListener('click', () => {
+    banner.hidden = false; (document.getElementById('cc-reject') as HTMLElement).focus();
+  }));
+</script>

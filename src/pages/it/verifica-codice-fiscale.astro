@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import Decoder from '../../components/Decoder.tsx';
+import { ui } from '../../i18n/ui';
+import { localeMeta } from '../../i18n/config';
+---
+<Base title="Verifica Codice Fiscale: Controllo Formale | Codice Fiscale Pro" description="Verifica codice fiscale: controlla lunghezza, data, carattere di controllo e omocodia. Controllo formale, non ufficiale." path="/it/verifica-codice-fiscale/">
+  <section class="mx-auto max-w-page px-6 pb-8 pt-16">
+    <p class="eyebrow">Controllo formale</p>
+    <h1 class="display mt-3 text-4xl text-ink md:text-5xl">Verifica Codice Fiscale</h1>
+    <p class="mt-4 max-w-2xl">Controlla se un codice fiscale è costruito correttamente. Una verifica formale del codice fiscale non equivale alla verifica ufficiale dell’Agenzia delle Entrate.</p>
+  </section>
+  <section class="mx-auto max-w-3xl px-6"><Decoder client:load mode="verify" t={ui.it.dec} locale="it" intl={localeMeta.it.intl} /></section>
+  <section class="mx-auto mt-12 max-w-3xl px-6">
+    <h2 class="h-lg text-2xl text-ink">Cosa controlliamo</h2>
+    <ul class="mt-3 list-disc space-y-1 pl-5">
+      <li>16 caratteri, con lettere e cifre nelle posizioni previste.</li>
+      <li>Lettera del mese, giorno e sesso validi.</li>
+      <li>Formato del codice del luogo.</li>
+      <li>Carattere di controllo corretto.</li>
+      <li>Omocodia: le cifre sostituite da lettere sono accettate.</li>
+    </ul>
+    <h2 class="h-lg mt-8 text-2xl text-ink">Cosa non possiamo dire</h2>
+    <p class="mt-3">Un codice può essere formalmente corretto senza essere mai stato assegnato a nessuno, e non possiamo confrontarlo con nome e cognome. Per la verifica ufficiale usa il <a class="text-link underline" href="https://telematici.agenziaentrate.gov.it/VerificaCF" rel="noopener noreferrer">servizio dell’Agenzia delle Entrate</a>. Codice Fiscale Pro è un sito indipendente, non affiliato all’Agenzia. Per leggere i dati contenuti nel codice vedi il <a class="text-link underline" href="/it/codice-fiscale-inverso/">codice fiscale inverso</a>.</p>
+  </section>
+</Base>

@@ -1,0 +1,44 @@
+---
+import Base from './Base.astro';
+import { ui } from '../i18n/ui';
+import { localeMeta, pagePath } from '../i18n/config';
+import { localeOf, guideList } from '../i18n/alternates';
+export interface Faq { q: string; a: string }
+interface Props { title: string; h1: string; description: string; path: string; summary: string; audience: string; datePublished: string; dateModified?: string; faq: Faq[]; related?: string[]; }
+const { title, h1, description, path, summary, audience, datePublished, dateModified = datePublished, faq, related = [] } = Astro.props;
+const locale = localeOf(path);
+const g = ui[locale].guide;
+const lm = localeMeta[locale];
+const fmt = (d: string) => new Date(d + 'T00:00:00Z').toLocaleDateString(lm.intl, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const rel = guideList(locale).filter((x) => related.includes(x.key));
+---
+<Base title={title} description={description} path={path} ogType="article" published={datePublished} modified={dateModified} headline={h1} faq={faq}>
+  <article class="legal mx-auto max-w-3xl px-6 py-16">
+    <nav aria-label={g.path} class="text-sm"><a href={pagePath(locale, 'home')}>{g.home}</a> / <a href={pagePath(locale, 'guides')}>{g.guides}</a> / <span aria-current="page">{h1}</span></nav>
+    <p class="eyebrow mt-6">{g.kicker}</p>
+    <h1 class="display mt-3 text-4xl text-ink md:text-5xl">{h1}</h1>
+    <p class="mt-4 text-sm">{g.by} <a href={pagePath(locale, 'about')}>{g.team}</a> · {g.published} <time datetime={datePublished}>{fmt(datePublished)}</time>{dateModified !== datePublished && <> · {g.updated} <time datetime={dateModified}>{fmt(dateModified)}</time></>}</p>
+
+    <aside aria-labelledby="in-breve" class="mt-8 rounded-md border border-hairline bg-elevated p-5">
+      <h2 id="in-breve" class="!mt-0 text-base">{g.inBrief}</h2>
+      <p>{summary}</p>
+      <p class="text-sm"><strong class="text-ink">{g.forWho}</strong> {audience}</p>
+    </aside>
+
+    <slot />
+
+    <h2>{g.faq}</h2>
+    {faq.map((f) => (<><h3>{f.q}</h3><p>{f.a}</p></>))}
+
+    {rel.length > 0 && (<><h2>{g.related}</h2><ul>{rel.map((x) => <li><a href={x.path}>{x.title}</a>: {x.desc}</li>)}</ul></>)}
+
+    <aside class="mt-10 rounded-md border border-hairline bg-elevated p-5">
+      <p class="!mt-0 font-semibold text-ink">{g.tryTools}</p>
+      <ul>
+        <li><a href={pagePath(locale, 'home')}>{g.calcName}</a>: {g.calcDesc}</li>
+        <li><a href={pagePath(locale, 'inverse')}>{g.inverseName}</a>: {g.inverseDesc}</li>
+        <li><a href={pagePath(locale, 'verify')}>{g.verifyName}</a>: {g.verifyDesc}</li>
+      </ul>
+    </aside>
+  </article>
+</Base>
